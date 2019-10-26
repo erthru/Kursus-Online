@@ -39,6 +39,7 @@ Route::post('/pengajar/login','PengajarController@login');
 Route::update('/pengajar/{id}','PengajarController@update');
 Route::update('/pengajar/{id}/saldo/add','PengajarController@addSaldo');
 Route::update('/pengajar/{id}/saldo/min','PengajarController@minSaldo');
+Route::delete('/pengajar/{id}','PengajarController@delete');
 
 // Siswa
 Route::get('/siswa','SiswaController@all');
@@ -48,3 +49,4 @@ Route::post('/siswa/login','SiswaController@login');
 Route::update('/siswa/{id}','SiswaController@update');
 Route::update('/siswa/{id}/saldo/add','SiswaController@addSaldo');
 Route::update('/siswa/{id}/saldo/min','SiswaController@minSaldo');
+Route::delete('/siswa/{id}','SiswaController@delete');
