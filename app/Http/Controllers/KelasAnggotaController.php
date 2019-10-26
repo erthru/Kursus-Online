@@ -18,4 +18,18 @@ class KelasAnggotaController extends Controller
 
         return $rsp;
     }
+
+    public function store(Request $request)
+    {
+        $body = [
+            'kelas_id' => $request->input('kelas_id'),
+            'siswa_id' => $request->input('siswa_id')
+        ];
+
+        $rsp = [
+            'data' => KelasAnggota::create($body)
+        ];
+
+        return $rsp;
+    }
 }
