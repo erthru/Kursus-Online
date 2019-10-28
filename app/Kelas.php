@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Kelas extends Model
 {
     protected $table = 'kelass';
-    protected $fillable = ['nama','deskripsi','harga','total_klik','pengajar_id'];
+    protected $fillable = ['nama','deskripsi','harga','total_klik','pengguna_id'];
 
-    public function pengajar()
+    public function pengguna()
     {
-        return $this->belongsTo('App\Pengajar','pengajar_id','id');
+        return $this->belongsTo('App\Pengguna','pengguna_id','id');
     }
 
     public function materi()

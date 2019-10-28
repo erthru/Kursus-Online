@@ -10,8 +10,8 @@ class KelasAnggotaController extends Controller
     public function checkAnggota(Request $request)
     {
         $rsp = [
-            'data' => KelasAnggota::with(['siswa', 'kelas'])
-                ->where('siswa_id', $request->query('siswa_id'))
+            'data' => KelasAnggota::with(['pengguna', 'kelas'])
+                ->where('pengguna_id', $request->query('pengguna_id'))
                 ->orderBy('id', 'DESC')
                 ->paginate(15)
         ];
@@ -23,10 +23,10 @@ class KelasAnggotaController extends Controller
     {
         $body = [
             'kelas_id' => $request->input('kelas_id'),
-            'siswa_id' => $request->input('siswa_id')
+            'pengguna_id' => $request->input('pengguna_id')
         ];
 
-        $data = KelasAnggota::where('kelas_id', $body['kelas_id'])->where('siswa_id', $body['siswa_id'])->first();
+        $data = KelasAnggota::where('kelas_id', $body['kelas_id'])->where('pengguna_id', $body['pengguna_id'])->first();
 
         $rsp = [
             'data' => 'Exist'

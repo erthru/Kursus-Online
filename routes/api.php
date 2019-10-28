@@ -31,22 +31,12 @@ Route::post('/materi','MateriController@store');
 Route::put('/materi/{id}','MateriController@update');
 Route::delete('/materi/{id}','MateriController@delete');
 
-// Pengajar
-Route::get('/pengajar','PengajarController@all');
-Route::get('/pengajar/{id}','PengajarController@show');
-Route::post('/pengajar','PengajarController@store');
-Route::post('/pengajar/login','PengajarController@login');
-Route::put('/pengajar/{id}','PengajarController@update');
-Route::put('/pengajar/{id}/saldo/add','PengajarController@addSaldo');
-Route::put('/pengajar/{id}/saldo/min','PengajarController@minSaldo');
-Route::delete('/pengajar/{id}','PengajarController@delete');
-
-// Siswa
-Route::get('/siswa','SiswaController@all');
-Route::get('/siswa/{id}','SiswaController@show');
-Route::post('/siswa','SiswaController@store');
-Route::post('/siswa/login','SiswaController@login');
-Route::put('/siswa/{id}','SiswaController@update');
-Route::put('/siswa/{id}/saldo/add','SiswaController@addSaldo');
-Route::put('/siswa/{id}/saldo/min','SiswaController@minSaldo');
-Route::delete('/siswa/{id}','SiswaController@delete');
+// Pengguna
+Route::get('/pengguna','PenggunaController@all');
+Route::get('/pengguna/{id}','PenggunaController@show');
+Route::post('/pengguna','PenggunaController@store');
+Route::post('/pengguna/login','PenggunaController@login');
+Route::put('/pengguna/{id}','PenggunaController@update');
+Route::put('/pengguna/{id}/saldo/add','PenggunaController@addSaldo');
+Route::put('/pengguna/{id}/saldo/min','PenggunaController@minSaldo');
+Route::delete('/pengguna/{id}','PenggunaController@delete');

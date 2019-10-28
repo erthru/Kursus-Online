@@ -10,7 +10,7 @@ class KelasController extends Controller
     public function all()
     {
         $rsp = [
-            'data' => Kelas::with(['pengajar'])->orderBy('id', 'DESC')->paginate(15)
+            'data' => Kelas::with(['pengguna'])->orderBy('id', 'DESC')->paginate(15)
         ];
 
         return $rsp;
@@ -22,13 +22,13 @@ class KelasController extends Controller
         $kelasAnggotaTotal = 0;
 
         $rsp = [
-            'data' => Kelas::with(['pengajar'])
-                ->with(['materi' => function ($materi) use (&$materiTotal) {
+            'data' => Kelas::with(['pengguna',
+                'materi' => function ($materi) use (&$materiTotal) {
                     $materi->orderBy('created_at', 'ASC')->paginate(15);
                     $materiTotal = $materi->count();
                 },
                 'kelasAnggota' => function ($kelasAnggota) use (&$kelasAnggotaTotal) {
-                    $kelasAnggota->with(['siswa'])->orderBy('id', 'DESC')->paginate(15);
+                    $kelasAnggota->with(['pengguna'])->orderBy('id', 'DESC')->paginate(15);
                     $kelasAnggotaTotal = $kelasAnggota->count();
                 }])
                 ->find($id),
@@ -44,7 +44,7 @@ class KelasController extends Controller
     public function search(Request $request)
     {
         $rsp = [
-            'data' => Kelas::with(['pengajar'])
+            'data' => Kelas::with(['pengguna'])
                 ->where('nama', 'LIKE', '%' . $request->query('q') . '%')
                 ->orWhere('deskripsi', 'LIKE', '%' . $request->query('q') . '%')
                 ->orderBy('id', 'DESC')
@@ -61,7 +61,7 @@ class KelasController extends Controller
             'deskripsi' => $request->input('deskripsi'),
             'harga' => $request->input('harga'),
             'total_klik' => 0,
-            'pengajar_id' => $request->input('pengajar_id'),
+            'pengguna_id' => $request->input('pengguna_id'),
         ];
 
         $rsp = [
@@ -79,8 +79,7 @@ class KelasController extends Controller
             'nama' => $request->input('nama'),
             'deskripsi' => $request->input('deskripsi'),
             'harga' => $request->input('harga'),
-            'total_klik' => 0,
-            'pengajar_id' => $request->input('pengajar_id'),
+            'total_klik' => 0
         ];
 
         $kelas->update($body);

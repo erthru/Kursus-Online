@@ -1,32 +1,54 @@
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
+import './bootstrap';
+import VueRouter from 'vue-router';
 
-require('./bootstrap');
+// component
+// main
+import AppComponent from './components/AppComponent';
+
+// default a.k.a non child
+import HomeComponent from './components/default/HomeComponent';
+import BergabungComponent from './components/default/BergabungComponent';
+
+// dashboard
+import DashboardComponent from './components/dashboard/DashboardComponent';
+import DashboardHomeComponent from './components/dashboard/DashboardHomeComponent';
+
 
 window.Vue = require('vue');
+Vue.use(VueRouter);
 
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
+const routes = [
+    {
+        path: '/',
+        component: HomeComponent
+    },
+    {
+        path: '/bergabung',
+        component: BergabungComponent
+    },
+    {
+        path: '/dashboard',
+        component: DashboardComponent,
+        children: [
+            {
+                path: '/',
+                component: DashboardHomeComponent
+            }
+        ]
+    }
+];
 
-// const files = require.context('./', true, /\.vue$/i);
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
-
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-const app = new Vue({
-    el: '#app',
+const router = new VueRouter({
+    mode: 'history',
+    routes: routes,
+    base: '/',
+    scrollBehavior: function (to) {
+        if (to.hash) {
+            return {
+                selector: to.hash
+            }
+        }
+    }
 });
+
+new Vue(Vue.util.extend({ router }, AppComponent)).$mount('#app');
