@@ -5,7 +5,7 @@
       class="navbar navbar-expand-lg navbar-dark bg-primary"
       v-bind:hidden="bergabungMenuIsHidden"
     >
-      <a class="navbar-brand" href="#">Kursus Online</a>
+      <router-link class="navbar-brand" to="/">Kursus Online</router-link>
       <button
         class="navbar-toggler"
         type="button"
@@ -28,7 +28,7 @@
 
     <!-- when user logged in -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary" v-bind:hidden="userMenuIsHidden">
-      <a class="navbar-brand" href="#">Kursus Online</a>
+      <router-link class="navbar-brand" to="/">Kursus Online</router-link>
       <button
         class="navbar-toggler"
         type="button"

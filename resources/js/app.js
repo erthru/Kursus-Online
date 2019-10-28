@@ -12,6 +12,7 @@ import LogoutComponent from './components/default/LogoutComponent';
 // main
 import MainComponent from './components/main/MainComponent';
 import MainHomeComponent from './components/main/MainHomeComponent';
+import MainBukaKelasComponent from './components/main/MainBukaKelasComponent';
 
 window.Vue = require('vue');
 Vue.use(VueRouter);
@@ -24,6 +25,10 @@ const routes = [
             {
                 path:'/',
                 component: MainHomeComponent
+            },
+            {
+                path:'/buka_kelas',
+                component: MainBukaKelasComponent
             }
         ]
     },

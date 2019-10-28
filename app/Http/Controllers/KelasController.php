@@ -24,12 +24,12 @@ class KelasController extends Controller
         $rsp = [
             'data' => Kelas::with(['pengguna',
                 'materi' => function ($materi) use (&$materiTotal) {
-                    $materi->orderBy('created_at', 'ASC')->paginate(15);
                     $materiTotal = $materi->count();
+                    $materi->orderBy('created_at', 'ASC')->paginate(15);
                 },
                 'kelasAnggota' => function ($kelasAnggota) use (&$kelasAnggotaTotal) {
-                    $kelasAnggota->with(['pengguna'])->orderBy('id', 'DESC')->paginate(15);
                     $kelasAnggotaTotal = $kelasAnggota->count();
+                    $kelasAnggota->with(['pengguna'])->orderBy('id', 'DESC')->paginate(15);
                 }])
                 ->find($id),
             'has_many_count' => [

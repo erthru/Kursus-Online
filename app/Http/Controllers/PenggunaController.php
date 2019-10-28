@@ -23,8 +23,8 @@ class PenggunaController extends Controller
         $rsp = [
             'data' => Pengguna::with([
                 'kelas' => function ($kelas) use (&$kelasTotal) {
-                    $kelas->orderBy('id', 'DESC')->paginate(15);
                     $kelasTotal = $kelas->count();
+                    $kelas->orderBy('id', 'DESC')->paginate(15);
                 }
             ])->find($id),
             'has_many_count' => [

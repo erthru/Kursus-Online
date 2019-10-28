@@ -4,6 +4,7 @@
       <br />
       <vue-headful :title="title" />
       <div class="row">
+        <!--form register-->
         <div class="col-md-4">
           <h4>DAFTAR</h4>
           <small>Bergabung dengan kami.</small>
@@ -81,6 +82,7 @@
             v-bind:hidden="errorMessageRegisterIsHidden"
           >{{ errorMessage }}</div>
         </div>
+        <!--form login-->
         <div class="col-md-4">
           <h4>LOGIN</h4>
           <small>Login jika telah memiliki akun</small>
