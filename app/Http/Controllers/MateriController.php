@@ -40,8 +40,10 @@ class MateriController extends Controller
             'kelas_id' => $request->input('kelas_id')
         ];
 
+        $materi->update($body);
+
         $rsp = [
-            'data' => $materi->update($body)
+            'data' => $materi
         ];
 
         return $rsp;

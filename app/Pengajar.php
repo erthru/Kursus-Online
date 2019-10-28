@@ -11,6 +11,6 @@ class Pengajar extends Model
 
     public function kelas()
     {
-        return $this->hasMany('App/Kelas', 'pengajar_id', 'id');
+        return $this->hasMany('App\Kelas', 'pengajar_id', 'id');
     }
 }

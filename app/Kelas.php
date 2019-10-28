@@ -11,16 +11,16 @@ class Kelas extends Model
 
     public function pengajar()
     {
-        return $this->belongsTo('App/Pengajar','pengajar_id','id');
+        return $this->belongsTo('App\Pengajar','pengajar_id','id');
     }
 
     public function materi()
     {
-        return $this->hasMany('App/Materi','kelas_id','id');
+        return $this->hasMany('App\Materi','kelas_id','id');
     }
 
     public function kelasAnggota()
     {
-        return $this->hasMany('App/KelasAnggota','kelas_id','id');
+        return $this->hasMany('App\KelasAnggota','kelas_id','id');
     }
 }

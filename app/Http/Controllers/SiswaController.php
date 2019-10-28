@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Siswa;
 use Illuminate\Http\Request;
 
 class SiswaController extends Controller
@@ -17,13 +18,16 @@ class SiswaController extends Controller
 
     public function show($id)
     {
-        $kelasTotal = 0;
+        $kelasAnggotaTotal = 0;
 
         $rsp = [
-            'data' => Siswa::with(['kelasAnggota' => function ($kelasAnggota) use (&$kelasTotal) {
-                $kelasAnggota->orderBy('id', 'DESC');
-                $kelasTotal = $kelasAnggota->count();
-            }])
+            'data' => Siswa::with(['kelasAnggota' => function ($kelasAnggota) use (&$kelasAnggotaTotal) {
+                $kelasAnggota->with(['kelas'])->orderBy('id', 'DESC')->paginate(15);
+                $kelasAnggotaTotal = $kelasAnggota->count();
+            }])->find($id),
+            'has_many_count' => [
+                'kelas_anggota' => $kelasAnggotaTotal
+            ]
         ];
 
         return $rsp;
@@ -75,8 +79,10 @@ class SiswaController extends Controller
             'password' => $request->input('password')
         ];
 
+        $siswa->update($body);
+
         $rsp = [
-            'data' => $siswa->update($body)
+            'data' => $siswa
         ];
 
         return $rsp;
@@ -93,8 +99,10 @@ class SiswaController extends Controller
             'saldo' => $currentSaldo
         ];
 
+        $pengajar->update($body);
+
         $rsp = [
-            'data' => $pengajar->update($body)
+            'data' => $pengajar
         ];
 
         return $rsp;
@@ -105,14 +113,19 @@ class SiswaController extends Controller
         $pengajar = Siswa::find($id);
 
         $currentSaldo = (int)$pengajar->saldo;
-        $currentSaldo -= (int)$request->saldo;
+        
+        if ($currentSaldo != 0){
+            $currentSaldo -= (int)$request->saldo;
+        }
 
         $body = [
             'saldo' => $currentSaldo
         ];
 
+        $pengajar->update($body);
+
         $rsp = [
-            'data' => $pengajar->update($body)
+            'data' => $pengajar
         ];
 
         return $rsp;

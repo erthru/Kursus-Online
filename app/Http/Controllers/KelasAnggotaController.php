@@ -10,9 +10,9 @@ class KelasAnggotaController extends Controller
     public function checkAnggota(Request $request)
     {
         $rsp = [
-            'data' => KelasAnggota::with(['siswa','kelas'])
+            'data' => KelasAnggota::with(['siswa', 'kelas'])
                 ->where('siswa_id', $request->query('siswa_id'))
-                ->orderBy('id','DESC')
+                ->orderBy('id', 'DESC')
                 ->paginate(15)
         ];
 
@@ -26,9 +26,17 @@ class KelasAnggotaController extends Controller
             'siswa_id' => $request->input('siswa_id')
         ];
 
+        $data = KelasAnggota::where('kelas_id', $body['kelas_id'])->where('siswa_id', $body['siswa_id'])->first();
+
         $rsp = [
-            'data' => KelasAnggota::create($body)
+            'data' => 'Exist'
         ];
+
+        if ($data == null) {
+            $rsp = [
+                'data' => KelasAnggota::create($body)
+            ];
+        }
 
         return $rsp;
     }

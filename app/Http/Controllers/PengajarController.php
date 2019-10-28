@@ -26,7 +26,10 @@ class PengajarController extends Controller
                     $kelas->orderBy('id', 'DESC')->paginate(15);
                     $kelasTotal = $kelas->count();
                 }
-            ])
+            ])->find($id),
+            'has_many_count' => [
+                'kelas' => $kelasTotal
+            ]
         ];
 
         return $rsp;
@@ -76,8 +79,10 @@ class PengajarController extends Controller
             'password' => $request->input('password')
         ];
 
+        $pengajar->update($body);
+
         $rsp = [
-            'data' => $pengajar->update($body)
+            'data' => $pengajar
         ];
 
         return $rsp;
@@ -94,8 +99,10 @@ class PengajarController extends Controller
             'saldo' => $currentSaldo
         ];
 
+        $pengajar->update($body);
+
         $rsp = [
-            'data' => $pengajar->update($body)
+            'data' => $pengajar
         ];
 
         return $rsp;
@@ -106,14 +113,19 @@ class PengajarController extends Controller
         $pengajar = Pengajar::find($id);
 
         $currentSaldo = (int)$pengajar->saldo;
-        $currentSaldo -= (int)$request->saldo;
+        
+        if ($currentSaldo != 0){
+            $currentSaldo -= (int)$request->saldo;
+        }
 
         $body = [
             'saldo' => $currentSaldo
         ];
 
+        $pengajar->update($body);
+
         $rsp = [
-            'data' => $pengajar->update($body)
+            'data' => $pengajar
         ];
 
         return $rsp;

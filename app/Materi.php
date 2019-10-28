@@ -11,6 +11,6 @@ class Materi extends Model
 
     public function kelas()
     {
-        return $this->belongsTo('App/Kelas','kelas_id','id');
+        return $this->belongsTo('App\Kelas','kelas_id','id');
     }
 }

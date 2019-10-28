@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Kelas;
 use Illuminate\Http\Request;
 
 class KelasController extends Controller
@@ -33,7 +34,7 @@ class KelasController extends Controller
                 ->find($id),
             'has_many_count' => [
                 'materi' => $materiTotal,
-                'kelasAnggota' => '$kelasAnggota'
+                'kelasAnggota' => $kelasAnggotaTotal
             ]
         ];
 
@@ -82,8 +83,10 @@ class KelasController extends Controller
             'pengajar_id' => $request->input('pengajar_id'),
         ];
 
+        $kelas->update($body);
+
         $rsp = [
-            'data' => $kelas->update($body)
+            'data' => $kelas
         ];
 
         return $rsp;

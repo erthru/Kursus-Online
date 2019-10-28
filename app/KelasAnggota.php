@@ -11,11 +11,11 @@ class KelasAnggota extends Model
 
     public function kelas()
     {
-        return $this->belongsToMany('App/Kelas', 'kelass', 'id', 'kelas_id');
+        return $this->hasOne('App\Kelas','id','kelas_id');
     }
 
     public function siswa()
     {
-        return $this->belongsToMany('App/Siswa', 'siswas', 'id', 'siswa_id');
+        return $this->hasOne('App\Siswa','id','siswa_id');
     }
 }
