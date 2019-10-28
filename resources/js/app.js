@@ -6,13 +6,12 @@ import VueRouter from 'vue-router';
 import AppComponent from './components/AppComponent';
 
 // default a.k.a non child
-import HomeComponent from './components/default/HomeComponent';
 import BergabungComponent from './components/default/BergabungComponent';
+import LogoutComponent from './components/default/LogoutComponent';
 
-// dashboard
-import DashboardComponent from './components/dashboard/DashboardComponent';
-import DashboardHomeComponent from './components/dashboard/DashboardHomeComponent';
-
+// main
+import MainComponent from './components/main/MainComponent';
+import MainHomeComponent from './components/main/MainHomeComponent';
 
 window.Vue = require('vue');
 Vue.use(VueRouter);
@@ -20,21 +19,21 @@ Vue.use(VueRouter);
 const routes = [
     {
         path: '/',
-        component: HomeComponent
+        component: MainComponent,
+        children: [
+            {
+                path:'/',
+                component: MainHomeComponent
+            }
+        ]
     },
     {
         path: '/bergabung',
         component: BergabungComponent
     },
     {
-        path: '/dashboard',
-        component: DashboardComponent,
-        children: [
-            {
-                path: '/',
-                component: DashboardHomeComponent
-            }
-        ]
+        path: '/logout',
+        component: LogoutComponent
     }
 ];
 

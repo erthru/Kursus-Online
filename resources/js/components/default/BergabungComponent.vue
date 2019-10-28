@@ -1,113 +1,119 @@
 <template>
   <div>
-    <vue-headful :title="title" />
-    <div class="row">
-      <div class="col-md-4">
-        <h4>DAFTAR</h4>
-        <small>Bergabung dengan kami.</small>
-        <br />
-        <br />
-        <form @submit.prevent="register()">
-          <div class="form-group">
-            <label>Nama Depan</label>
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Input Nama Deapn"
-              v-model="txNamaDepanRegisterVal"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label>Nama Belakang</label>
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Input Nama Belakang"
-              v-model="txNamaBelakangRegisterVal"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label>Telp</label>
-            <input
-              type="number"
-              class="form-control"
-              placeholder="Input No. Hp"
-              v-model="txTelpRegisterVal"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label>Email</label>
-            <input
-              type="email"
-              class="form-control"
-              placeholder="Someone@example.com"
-              v-model="txEmailRegisterVal"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label>Password</label>
-            <input
-              type="password"
-              class="form-control"
-              placeholder="Password"
-              v-model="txPasswordRegisterVal"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label>Konfirmasi Password</label>
-            <input
-              type="password"
-              class="form-control"
-              placeholder="Password"
-              v-model="txPasswordReRegisterVal"
-              required
-            />
-          </div>
-          <button
-            type="submit"
-            class="btn btn-primary"
-            v-bind:disabled="btnDaftarRegisterIsDisabled"
-          >DAFTAR</button>
-        </form>
-        <div
-          class="alert alert-danger"
-          v-bind:hidden="errorMessageRegisterIsHidden"
-        >{{ errorMessage }}</div>
-      </div>
-      <div class="col-md-4">
-        <h4>LOGIN</h4>
-        <small>Login jika telah memiliki akun</small>
-        <br />
-        <br />
-        <form @submit.prevent="login()">
-          <div class="form-group">
-            <label>Email</label>
-            <input
-              type="email"
-              class="form-control"
-              placeholder="someone@example.com"
-              v-model="txEmailLoginVal"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label>Password</label>
-            <input
-              type="password"
-              class="form-control"
-              v-model="txPasswordLoginVal"
-              placeholder="password"
-              required
-            />
-          </div>
-          <button type="submit" class="btn btn-primary" v-bind:disabled="btnLoginIsDisabled">LOGIN</button>
-        </form>
-        <div class="alert alert-danger" v-bind:hidden="errorMessageLoginIsHidden">{{ errorMessage }}</div>
+    <div class="container">
+      <br />
+      <vue-headful :title="title" />
+      <div class="row">
+        <div class="col-md-4">
+          <h4>DAFTAR</h4>
+          <small>Bergabung dengan kami.</small>
+          <br />
+          <br />
+          <form @submit.prevent="register()">
+            <div class="form-group">
+              <label>Nama Depan</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Input Nama Deapn"
+                v-model="txNamaDepanRegisterVal"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label>Nama Belakang</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Input Nama Belakang"
+                v-model="txNamaBelakangRegisterVal"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label>Telp</label>
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Input No. Hp"
+                v-model="txTelpRegisterVal"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input
+                type="email"
+                class="form-control"
+                placeholder="Someone@example.com"
+                v-model="txEmailRegisterVal"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input
+                type="password"
+                class="form-control"
+                placeholder="Password"
+                v-model="txPasswordRegisterVal"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label>Konfirmasi Password</label>
+              <input
+                type="password"
+                class="form-control"
+                placeholder="Password"
+                v-model="txPasswordReRegisterVal"
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              class="btn btn-primary"
+              v-bind:disabled="btnDaftarRegisterIsDisabled"
+            >DAFTAR</button>
+          </form>
+          <div
+            class="alert alert-danger"
+            v-bind:hidden="errorMessageRegisterIsHidden"
+          >{{ errorMessage }}</div>
+        </div>
+        <div class="col-md-4">
+          <h4>LOGIN</h4>
+          <small>Login jika telah memiliki akun</small>
+          <br />
+          <br />
+          <form @submit.prevent="login()">
+            <div class="form-group">
+              <label>Email</label>
+              <input
+                type="email"
+                class="form-control"
+                placeholder="someone@example.com"
+                v-model="txEmailLoginVal"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input
+                type="password"
+                class="form-control"
+                v-model="txPasswordLoginVal"
+                placeholder="password"
+                required
+              />
+            </div>
+            <button type="submit" class="btn btn-primary" v-bind:disabled="btnLoginIsDisabled">LOGIN</button>
+          </form>
+          <div
+            class="alert alert-danger"
+            v-bind:hidden="errorMessageLoginIsHidden"
+          >{{ errorMessage }}</div>
+        </div>
       </div>
     </div>
   </div>
