@@ -125,8 +125,8 @@ export default {
         this.txNamaKelasVal = "";
         this.txDeskripsiVal = "";
         this.txHargaVal = "0";
-        this.page = 1;
-        this.loadKelas();
+        this.page = 0;
+        this.loadKelas("next");
       });
     },
     loadKelas(mode) {
