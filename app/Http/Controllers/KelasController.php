@@ -25,7 +25,7 @@ class KelasController extends Controller
             'data' => Kelas::with(['pengguna',
                 'materi' => function ($materi) use (&$materiTotal) {
                     $materiTotal = $materi->count();
-                    $materi->orderBy('created_at', 'ASC')->paginate(15);
+                    $materi->with(['materi','kuis'])->orderBy('created_at', 'ASC')->paginate(15);
                 },
                 'kelasAnggota' => function ($kelasAnggota) use (&$kelasAnggotaTotal) {
                     $kelasAnggotaTotal = $kelasAnggota->count();

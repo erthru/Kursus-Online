@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Materi;
 use Illuminate\Http\Request;
 
 class MateriController extends Controller
@@ -9,7 +10,7 @@ class MateriController extends Controller
     public function show($id)
     {
         $rsp = [
-            'data' => Materi::with(['kelas'])->find($id)
+            'data' => Materi::with(['kelas','materi','kuis'])->find($id)
         ];
 
         return $rsp;
@@ -18,32 +19,12 @@ class MateriController extends Controller
     public function store(Request $request)
     {
         $body = [
-            'judul' => $request->input('judul'),
-            'konten' => $request->input('konten'),
+            'tipe' => $request->input('tipe'),
             'kelas_id' => $request->input('kelas_id')
         ];
 
         $rsp = [
             'data' => Materi::create($body)
-        ];
-
-        return $rsp;
-    }
-
-    public function update($id, Request $request)
-    {
-        $materi = Materi::find($id);
-
-        $body = [
-            'judul' => $request->input('judul'),
-            'konten' => $request->input('konten'),
-            'kelas_id' => $request->input('kelas_id')
-        ];
-
-        $materi->update($body);
-
-        $rsp = [
-            'data' => $materi
         ];
 
         return $rsp;
