@@ -2610,6 +2610,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2618,8 +2633,16 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      title: _helper_Const__WEBPACK_IMPORTED_MODULE_1__["default"].TITLE + "Selamat Datang"
+      title: _helper_Const__WEBPACK_IMPORTED_MODULE_1__["default"].TITLE + "Selamat Datang",
+      // search form
+      txCariVal: "",
+      btnCariIsDisabled: false
     };
+  },
+  methods: {
+    gotoCari: function gotoCari() {
+      this.btnCariIsDisabled = true;
+    }
   }
 });
 
@@ -39205,7 +39228,84 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_c("vue-headful", { attrs: { title: _vm.title } })], 1)
+  return _c(
+    "div",
+    [
+      _c("vue-headful", { attrs: { title: _vm.title } }),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "jumbotron" }, [
+          _c("h1", { staticClass: "display-4" }, [
+            _vm._v("Ingin Belajar Apa ?")
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "lead" }, [
+            _vm._v(
+              "Gunakan kotak pencarian di bawah untuk mencari kelas yang diinginkan."
+            )
+          ]),
+          _vm._v(" "),
+          _c("hr", { staticClass: "my-4" }),
+          _vm._v(" "),
+          _c(
+            "form",
+            {
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.gotoCari()
+                }
+              }
+            },
+            [
+              _c("label", [_vm._v("Cari kelas")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-inline" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.txCariVal,
+                      expression: "txCariVal"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    name: "query",
+                    placeholder: "contoh: pemrograman",
+                    required: ""
+                  },
+                  domProps: { value: _vm.txCariVal },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.txCariVal = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary ml-2",
+                    attrs: { type: "submit", disabled: _vm.btnCariIsDisabled }
+                  },
+                  [_vm._v("Cari")]
+                )
+              ])
+            ]
+          )
+        ])
+      ])
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
