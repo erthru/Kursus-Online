@@ -38,6 +38,8 @@ export default {
   methods:{
     gotoCari(){
       this.btnCariIsDisabled = true;
+
+      this.$router.push("/cari?query="+this.txCariVal);
     }
   }
 };

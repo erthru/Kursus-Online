@@ -14,6 +14,7 @@ import MainComponent from './components/main/MainComponent';
 import MainHomeComponent from './components/main/MainHomeComponent';
 import MainBukaKelasComponent from './components/main/MainBukaKelasComponent';
 import MainBukaKelasDetailComponent from './components/main/MainBukaKelasDetailComponent';
+import MainCariKelasComponent from './components/main/MainCariKelasComponent';
 
 window.Vue = require('vue');
 Vue.use(VueRouter);
@@ -34,6 +35,10 @@ const routes = [
             {
                 path:'/buka_kelas/:id',
                 component: MainBukaKelasDetailComponent
+            },
+            {
+                path:"/cari",
+                component: MainCariKelasComponent
             }
         ]
     },
