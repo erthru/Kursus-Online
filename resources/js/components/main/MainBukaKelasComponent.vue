@@ -52,7 +52,6 @@
           <h4>Daftar Kelas Saya</h4>
           <div v-for="item in kelas" :key="item.id">
             <router-link class="text-primary" :to="'/buka_kelas/'+item.id">{{item.nama}}</router-link>
-            <div class="bg-secondary" style="height:1px; margin-top:2px; margin-bottom:2px"></div>
           </div>
           <div style="margin-top:10px">
             <nav aria-label="Page navigation example">
@@ -166,8 +165,8 @@ export default {
         this.pageNextElementVal = "page-item";
       }
 
-      if(this.page == this.totalPage){
-          this.pageNextElementVal = "page-item disabled";
+      if (this.page == this.totalPage) {
+        this.pageNextElementVal = "page-item disabled";
       }
     }
   }

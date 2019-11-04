@@ -2188,7 +2188,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2295,7 +2294,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_headful__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-headful */ "./node_modules/vue-headful/dist/vue-headful.js");
 /* harmony import */ var vue_headful__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_headful__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _helper_Const__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../helper/Const */ "./resources/js/helper/Const.js");
-//
 //
 //
 //
@@ -2531,6 +2529,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2540,6 +2559,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       title: _helper_Const__WEBPACK_IMPORTED_MODULE_1__["default"].TITLE + "Pencarian untuk kelas " + this.$route.query.query,
+      queryParams: this.$route.query.query,
       searchLoadingIsHidden: false,
       searchResultIsEmptyInfoIsHidden: true,
       searchResults: []
@@ -38758,16 +38778,7 @@ var render = function() {
                         attrs: { to: "/buka_kelas/" + item.id }
                       },
                       [_vm._v(_vm._s(item.nama))]
-                    ),
-                    _vm._v(" "),
-                    _c("div", {
-                      staticClass: "bg-secondary",
-                      staticStyle: {
-                        height: "1px",
-                        "margin-top": "2px",
-                        "margin-bottom": "2px"
-                      }
-                    })
+                    )
                   ],
                   1
                 )
@@ -39027,16 +39038,8 @@ var render = function() {
                       _vm._s(siswa.pengguna.nama_depan) +
                       " " +
                       _vm._s(siswa.pengguna.nama_belakang) +
-                      "\n          "
-                  ),
-                  _c("div", {
-                    staticClass: "bg-secondary",
-                    staticStyle: {
-                      height: "1px",
-                      "margin-top": "2px",
-                      "margin-bottom": "2px"
-                    }
-                  })
+                      "\n        "
+                  )
                 ])
               }),
               _vm._v(" "),
@@ -39127,47 +39130,123 @@ var render = function() {
       _vm._v(" "),
       _c("br"),
       _vm._v(" "),
-      _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "row justify-content-md-center" }, [
-          _c(
-            "div",
-            {
-              staticClass: "spinner-border text-primary",
-              attrs: { role: "status", hidden: _vm.searchLoadingIsHidden }
-            },
-            [_c("span", { staticClass: "sr-only" }, [_vm._v("Loading...")])]
-          ),
+      _c(
+        "div",
+        { staticClass: "container" },
+        [
+          _c("h4", [
+            _vm._v(
+              'Menampilkan hasil pencarian "' + _vm._s(_vm.queryParams) + '"'
+            )
+          ]),
           _vm._v(" "),
-          _c(
-            "div",
-            { attrs: { hidden: _vm.searchResultIsEmptyInfoIsHidden } },
-            [
-              _c("center", [
-                _c(
-                  "label",
-                  [
-                    _vm._v(
-                      "\n            Data pencarian tidak ditemukan.\n            "
-                    ),
-                    _c("br"),
+          _c("br"),
+          _vm._v(" "),
+          _c("div", { staticClass: "row justify-content-md-center" }, [
+            _c(
+              "div",
+              {
+                staticClass: "spinner-border text-primary",
+                attrs: { role: "status", hidden: _vm.searchLoadingIsHidden }
+              },
+              [_c("span", { staticClass: "sr-only" }, [_vm._v("Loading...")])]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { attrs: { hidden: _vm.searchResultIsEmptyInfoIsHidden } },
+              [
+                _c("center", [
+                  _c(
+                    "label",
+                    [
+                      _vm._v(
+                        "\n            Data pencarian tidak ditemukan.\n            "
+                      ),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("router-link", { attrs: { to: "/" } }, [
+                        _vm._v("Kembali ke pencarian")
+                      ])
+                    ],
+                    1
+                  )
+                ])
+              ],
+              1
+            )
+          ]),
+          _vm._v(" "),
+          _vm._l(_vm.searchResults, function(item) {
+            return _c(
+              "div",
+              { key: item.id, staticClass: "row justify-content-md-center" },
+              [
+                _c("div", { staticClass: "col-md-10" }, [
+                  _c("div", { staticClass: "row" }, [
+                    _vm._m(0, true),
                     _vm._v(" "),
-                    _c("router-link", { attrs: { to: "/" } }, [
-                      _vm._v("Kembali ke pencarian")
-                    ])
-                  ],
-                  1
-                )
-              ])
-            ],
-            1
-          )
-        ])
-      ])
+                    _c(
+                      "div",
+                      { staticClass: "col-md-9 mt-2" },
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "text-primary h5",
+                            attrs: { to: "/detail/" + item.id }
+                          },
+                          [_vm._v(_vm._s(item.nama))]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "p",
+                          {
+                            staticStyle: {
+                              overflow: "hidden",
+                              "white-space": "nowrap"
+                            }
+                          },
+                          [_vm._v(_vm._s(item.deskripsi))]
+                        ),
+                        _vm._v(" "),
+                        _c("small", [
+                          _vm._v("Last updated on: " + _vm._s(item.updated_at))
+                        ])
+                      ],
+                      1
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("hr")
+                ])
+              ]
+            )
+          })
+        ],
+        2
+      )
     ],
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-3" }, [
+      _c("img", {
+        attrs: {
+          src:
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS1Nlfy8fzqVzcYr2k8euUk5wt071Qp5xGvkzUydVNj1ntgGdEs",
+          width: "100%",
+          height: "100px"
+        }
+      })
+    ])
+  }
+]
 render._withStripped = true
 
 

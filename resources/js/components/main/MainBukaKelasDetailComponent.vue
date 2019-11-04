@@ -62,7 +62,6 @@
           </small>
           <div v-for="(siswa, index) in daftarSiswa" :key="siswa.id">
             {{index+=1}}. {{siswa.pengguna.nama_depan}} {{siswa.pengguna.nama_belakang}}
-            <div class="bg-secondary" style="height:1px; margin-top:2px; margin-bottom:2px"></div>
           </div>
           <div style="margin-top:10px">
             <nav aria-label="Page navigation example">
