@@ -36,7 +36,12 @@
             <div class="col-md-9 mt-2">
               <router-link class="text-primary h5" :to="'/detail/'+item.id">{{item.nama}}</router-link>
               <p style="overflow:hidden; white-space:nowrap">{{item.deskripsi}}</p>
-              <small>Last updated on: {{item.updated_at}}</small>
+              <div class="row">
+                <div class="col-md-4">
+                  <small>Last updated on: {{item.updated_at}}</small>
+                </div>
+                <div class="col-md-8"><h5 class="text-danger" style="text-align:right">Rp. {{getRupiah(item.harga)}}</h5></div>
+              </div>
             </div>
           </div>
           <hr />
@@ -49,6 +54,7 @@
 <script>
 import VueHeadful from "vue-headful";
 import Const from "../../helper/Const";
+import TextTool from "../../helper/TextTool";
 export default {
   components: {
     VueHeadful
@@ -80,6 +86,9 @@ export default {
             this.searchResultIsEmptyInfoIsHidden = false;
           }
         });
+    },
+    getRupiah(x){
+        return TextTool.getRupiah(x);
     }
   }
 };

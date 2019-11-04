@@ -2502,6 +2502,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_headful__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-headful */ "./node_modules/vue-headful/dist/vue-headful.js");
 /* harmony import */ var vue_headful__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_headful__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _helper_Const__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../helper/Const */ "./resources/js/helper/Const.js");
+/* harmony import */ var _helper_TextTool__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../helper/TextTool */ "./resources/js/helper/TextTool.js");
 //
 //
 //
@@ -2550,6 +2551,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2580,6 +2587,9 @@ __webpack_require__.r(__webpack_exports__);
           _this.searchResultIsEmptyInfoIsHidden = false;
         }
       });
+    },
+    getRupiah: function getRupiah(x) {
+      return _helper_TextTool__WEBPACK_IMPORTED_MODULE_2__["default"].getRupiah(x);
     }
   }
 });
@@ -39210,8 +39220,29 @@ var render = function() {
                           [_vm._v(_vm._s(item.deskripsi))]
                         ),
                         _vm._v(" "),
-                        _c("small", [
-                          _vm._v("Last updated on: " + _vm._s(item.updated_at))
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col-md-4" }, [
+                            _c("small", [
+                              _vm._v(
+                                "Last updated on: " + _vm._s(item.updated_at)
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-8" }, [
+                            _c(
+                              "h5",
+                              {
+                                staticClass: "text-danger",
+                                staticStyle: { "text-align": "right" }
+                              },
+                              [
+                                _vm._v(
+                                  "Rp. " + _vm._s(_vm.getRupiah(item.harga))
+                                )
+                              ]
+                            )
+                          ])
                         ])
                       ],
                       1
@@ -55236,6 +55267,23 @@ __webpack_require__.r(__webpack_exports__);
   TITLE: 'Kursus Online | ',
   API_BASE_URL: 'http://localhost:8000/api/',
   PENGGUNA_ID: 'pengguna_id'
+});
+
+/***/ }),
+
+/***/ "./resources/js/helper/TextTool.js":
+/*!*****************************************!*\
+  !*** ./resources/js/helper/TextTool.js ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  getRupiah: function getRupiah(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
 });
 
 /***/ }),
