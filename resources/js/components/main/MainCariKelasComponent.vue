@@ -34,13 +34,18 @@
               />
             </div>
             <div class="col-md-9 mt-2">
-              <router-link class="text-primary h5" :to="'/detail/'+item.id">{{item.nama}}</router-link>
+              <router-link class="text-primary h5" :to="'/kelas/'+item.id">{{item.nama}}</router-link>
               <p style="overflow:hidden; white-space:nowrap">{{item.deskripsi}}</p>
               <div class="row">
                 <div class="col-md-4">
                   <small>Last updated on: {{item.updated_at}}</small>
                 </div>
-                <div class="col-md-8"><h5 class="text-danger" style="text-align:right">Rp. {{getRupiah(item.harga)}}</h5></div>
+                <div class="col-md-8">
+                  <h5
+                    class="text-danger"
+                    style="text-align:right"
+                  >{{item.harga == '0' ? 'GRATIS' : 'Rp.' + getRupiah(item.harga)}}</h5>
+                </div>
               </div>
             </div>
           </div>
@@ -54,7 +59,7 @@
 <script>
 import VueHeadful from "vue-headful";
 import Const from "../../helper/Const";
-import TextTool from "../../helper/TextTool";
+import TextTools from "../../helper/TextTools";
 export default {
   components: {
     VueHeadful
@@ -65,30 +70,56 @@ export default {
       queryParams: this.$route.query.query,
       searchLoadingIsHidden: false,
       searchResultIsEmptyInfoIsHidden: true,
-      searchResults: []
+      searchResults: [],
+      page: 0
     };
   },
   mounted() {
     this.loadHasilPencarian();
+    this.scroll();
   },
   methods: {
     loadHasilPencarian() {
+      this.page += 1;
+
       axios
         .get(
-          Const.API_BASE_URL + "kelas/search/query?q=" + this.$route.query.query
+          Const.API_BASE_URL +
+            "kelas/search/query?q=" +
+            this.$route.query.query +
+            "&page=" +
+            this.page
         )
         .then(res => {
           this.searchLoadingIsHidden = true;
 
-          this.searchResults = res.data.data.data;
+          for (var i = 0; i < res.data.data.data.length; i++) {
+            this.searchResults.push(res.data.data.data[i]);
+          }
 
-          if (this.searchResults.length == 0) {
+          if (this.searchResults.length == 0 && this.page == 1) {
             this.searchResultIsEmptyInfoIsHidden = false;
           }
         });
     },
-    getRupiah(x){
-        return TextTool.getRupiah(x);
+    getRupiah(x) {
+      return TextTools.getRupiah(x);
+    },
+    scroll() {
+      window.onscroll = () => {
+        let bottomOfWindow =
+          Math.max(
+            window.pageYOffset,
+            document.documentElement.scrollTop,
+            document.body.scrollTop
+          ) +
+            window.innerHeight ===
+          document.documentElement.offsetHeight;
+        if (bottomOfWindow) {
+          this.loadHasilPencarian();
+          console.log("reached the bottom");
+        }
+      };
     }
   }
 };
