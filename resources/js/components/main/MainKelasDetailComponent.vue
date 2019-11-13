@@ -1,12 +1,33 @@
 <template>
   <div>
     <vue-headful :title="title" />
+    <br />
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <h4>{{kelasTitle}}</h4>
+          <p>{{deskripsi}}</p>
+        </div>
+        <div class="col-md-4">
+          <div class="pb-4 pt-4 pl-4 pr-4" style="background-color: #dcdde1">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS1Nlfy8fzqVzcYr2k8euUk5wt071Qp5xGvkzUydVNj1ntgGdEs"
+              width="100%"
+              height="200px"
+            />
+            <h1 class="display-5 mt-3"><strong>{{harga}}</strong></h1>
+            <button class="btn btn-warning w-100 mt-1">BELI SEKARANG</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import VueHeadful from "vue-headful";
 import Const from "../../helper/Const";
+import TextTools from "../../helper/TextTools";
 export default {
   components: {
     VueHeadful
@@ -17,6 +38,9 @@ export default {
       pageMateri: 0,
       pageAnggota: 0,
       owner: {},
+      kelasTitle: "",
+      deskripsi: "",
+      harga: "Rp. 0",
       materis: [],
       anggotas: []
     };
@@ -30,8 +54,15 @@ export default {
       axios
         .get(Const.API_BASE_URL + "kelas/" + this.$route.params.id)
         .then(res => {
-          this.title += res.data.data.nama;
+          this.kelasTitle = res.data.data.nama;
+          this.title += this.kelasTitle;
           this.owner = res.data.data.pengguna;
+          this.deskripsi = res.data.data.deskripsi;
+          this.harga = "Rp. " + TextTools.getRupiah(res.data.data.harga);
+
+          if (this.harga == "Rp. 0") {
+            this.harga = "GRATIS";
+          }
         });
     },
     loadKelasMateri(mod) {

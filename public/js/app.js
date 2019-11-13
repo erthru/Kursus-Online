@@ -2789,12 +2789,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_headful__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-headful */ "./node_modules/vue-headful/dist/vue-headful.js");
 /* harmony import */ var vue_headful__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_headful__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _helper_Const__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../helper/Const */ "./resources/js/helper/Const.js");
+/* harmony import */ var _helper_TextTools__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../helper/TextTools */ "./resources/js/helper/TextTools.js");
 //
 //
 //
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2807,6 +2829,9 @@ __webpack_require__.r(__webpack_exports__);
       pageMateri: 0,
       pageAnggota: 0,
       owner: {},
+      kelasTitle: "",
+      deskripsi: "",
+      harga: "Rp. 0",
       materis: [],
       anggotas: []
     };
@@ -2820,8 +2845,15 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.get(_helper_Const__WEBPACK_IMPORTED_MODULE_1__["default"].API_BASE_URL + "kelas/" + this.$route.params.id).then(function (res) {
-        _this.title += res.data.data.nama;
+        _this.kelasTitle = res.data.data.nama;
+        _this.title += _this.kelasTitle;
         _this.owner = res.data.data.pengguna;
+        _this.deskripsi = res.data.data.deskripsi;
+        _this.harga = "Rp. " + _helper_TextTools__WEBPACK_IMPORTED_MODULE_2__["default"].getRupiah(res.data.data.harga);
+
+        if (_this.harga == "Rp. 0") {
+          _this.harga = "GRATIS";
+        }
       });
     },
     loadKelasMateri: function loadKelasMateri(mod) {
@@ -39693,7 +39725,53 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_c("vue-headful", { attrs: { title: _vm.title } })], 1)
+  return _c(
+    "div",
+    [
+      _c("vue-headful", { attrs: { title: _vm.title } }),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-8" }, [
+            _c("h4", [_vm._v(_vm._s(_vm.kelasTitle))]),
+            _vm._v(" "),
+            _c("p", [_vm._v(_vm._s(_vm.deskripsi))])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-4" }, [
+            _c(
+              "div",
+              {
+                staticClass: "pb-4 pt-4 pl-4 pr-4",
+                staticStyle: { "background-color": "#dcdde1" }
+              },
+              [
+                _c("img", {
+                  attrs: {
+                    src:
+                      "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS1Nlfy8fzqVzcYr2k8euUk5wt071Qp5xGvkzUydVNj1ntgGdEs",
+                    width: "100%",
+                    height: "200px"
+                  }
+                }),
+                _vm._v(" "),
+                _c("h1", { staticClass: "display-5 mt-3" }, [
+                  _c("strong", [_vm._v(_vm._s(_vm.harga))])
+                ]),
+                _vm._v(" "),
+                _c("button", { staticClass: "btn btn-warning w-100 mt-1" }, [
+                  _vm._v("BELI SEKARANG")
+                ])
+              ]
+            )
+          ])
+        ])
+      ])
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
