@@ -2803,11 +2803,17 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      title: _helper_Const__WEBPACK_IMPORTED_MODULE_1__["default"].TITLE
+      title: _helper_Const__WEBPACK_IMPORTED_MODULE_1__["default"].TITLE,
+      pageMateri: 0,
+      pageAnggota: 0,
+      owner: {},
+      materis: [],
+      anggotas: []
     };
   },
   mounted: function mounted() {
     this.loadKelasDetail();
+    this.loadKelasMateri("next");
   },
   methods: {
     loadKelasDetail: function loadKelasDetail() {
@@ -2815,6 +2821,37 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get(_helper_Const__WEBPACK_IMPORTED_MODULE_1__["default"].API_BASE_URL + "kelas/" + this.$route.params.id).then(function (res) {
         _this.title += res.data.data.nama;
+        _this.owner = res.data.data.pengguna;
+      });
+    },
+    loadKelasMateri: function loadKelasMateri(mod) {
+      var _this2 = this;
+
+      if (mod == "next") {
+        this.pageMateri += 1;
+      } else {
+        this.pageMateri -= 1;
+      }
+
+      axios.get(_helper_Const__WEBPACK_IMPORTED_MODULE_1__["default"].API_BASE_URL + "kelas/" + this.$route.params.id + "?page=" + this.pageMateri).then(function (res) {
+        for (var i = 0; i < res.data.data.materi.length; i++) {
+          _this2.materis.push(res.data.data.materi[i]);
+        }
+      });
+    },
+    loadKelasAnggota: function loadKelasAnggota(mod) {
+      var _this3 = this;
+
+      if (mod == "next") {
+        this.pageAnggota += 1;
+      } else {
+        this.pageAnggota -= 1;
+      }
+
+      axios.get(_helper_Const__WEBPACK_IMPORTED_MODULE_1__["default"].API_BASE_URL + "kelas/" + this.$route.params.id + "?page=" + this.pageAnggota).then(function (res) {
+        for (var i = 0; i < res.data.data.materi.length; i++) {
+          _this3.anggotas.push(res.data.data.kelas_anggota[i]);
+        }
       });
     }
   }
