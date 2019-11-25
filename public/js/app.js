@@ -2816,6 +2816,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -38387,7 +38396,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_c("router-view")], 1)
+  return _c("div", { staticClass: "bg-white" }, [_c("router-view")], 1)
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -39734,11 +39743,38 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "container" }, [
         _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-8" }, [
-            _c("h4", [_vm._v(_vm._s(_vm.kelasTitle))]),
-            _vm._v(" "),
-            _c("p", [_vm._v(_vm._s(_vm.deskripsi))])
-          ]),
+          _c(
+            "div",
+            { staticClass: "col-md-8" },
+            [
+              _c("h4", [_vm._v(_vm._s(_vm.kelasTitle))]),
+              _vm._v(" "),
+              _c("p", [_vm._v(_vm._s(_vm.deskripsi))]),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _c("h4", [_vm._v("Daftar Materi:")]),
+              _vm._v(" "),
+              _vm.materis.length == 0
+                ? _c("small", [_vm._v("Kelas ini belum memiliki materi.")])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm._l(_vm.materis, function(materi, index) {
+                return _c("div", { key: materi.id }, [
+                  _vm._v(
+                    _vm._s(
+                      (index += 1) +
+                        ". " +
+                        (materi.tipe == "MATERI"
+                          ? materi.materi[0].judul
+                          : "Kuis")
+                    )
+                  )
+                ])
+              })
+            ],
+            2
+          ),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-4" }, [
             _c(
@@ -55592,8 +55628,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/supriantodjamalu/Desktop/kursusonline/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/supriantodjamalu/Desktop/kursusonline/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Applications/XAMPP/xamppfiles/htdocs/AnoWS/Kursus-Online/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Applications/XAMPP/xamppfiles/htdocs/AnoWS/Kursus-Online/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

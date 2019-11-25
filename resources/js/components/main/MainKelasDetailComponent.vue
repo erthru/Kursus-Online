@@ -7,6 +7,13 @@
         <div class="col-md-8">
           <h4>{{kelasTitle}}</h4>
           <p>{{deskripsi}}</p>
+          <br />
+          <h4>Daftar Materi:</h4>
+          <small v-if="materis.length == 0">Kelas ini belum memiliki materi.</small>
+          <div
+            v-for="(materi, index) in materis"
+            :key="materi.id"
+          >{{ (index+=1) + '. ' + (materi.tipe == 'MATERI' ? materi.materi[0].judul : 'Kuis') }}</div>
         </div>
         <div class="col-md-4">
           <div class="pb-4 pt-4 pl-4 pr-4" style="background-color: #dcdde1">
@@ -15,7 +22,9 @@
               width="100%"
               height="200px"
             />
-            <h1 class="display-5 mt-3"><strong>{{harga}}</strong></h1>
+            <h1 class="display-5 mt-3">
+              <strong>{{harga}}</strong>
+            </h1>
             <button class="btn btn-warning w-100 mt-1">BELI SEKARANG</button>
           </div>
         </div>
