@@ -2825,6 +2825,40 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2835,19 +2869,20 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       title: _helper_Const__WEBPACK_IMPORTED_MODULE_1__["default"].TITLE,
-      pageMateri: 0,
       pageAnggota: 0,
       owner: {},
       kelasTitle: "",
       deskripsi: "",
       harga: "Rp. 0",
       materis: [],
-      anggotas: []
+      anggotas: [],
+      penggunaSaldo: "0"
     };
   },
   mounted: function mounted() {
     this.loadKelasDetail();
-    this.loadKelasMateri("next");
+    this.loadKelasMateri();
+    this.loadPenggunaDetail();
   },
   methods: {
     loadKelasDetail: function loadKelasDetail() {
@@ -2868,13 +2903,7 @@ __webpack_require__.r(__webpack_exports__);
     loadKelasMateri: function loadKelasMateri(mod) {
       var _this2 = this;
 
-      if (mod == "next") {
-        this.pageMateri += 1;
-      } else {
-        this.pageMateri -= 1;
-      }
-
-      axios.get(_helper_Const__WEBPACK_IMPORTED_MODULE_1__["default"].API_BASE_URL + "kelas/" + this.$route.params.id + "?page=" + this.pageMateri).then(function (res) {
+      axios.get(_helper_Const__WEBPACK_IMPORTED_MODULE_1__["default"].API_BASE_URL + "kelas/" + this.$route.params.id).then(function (res) {
         for (var i = 0; i < res.data.data.materi.length; i++) {
           _this2.materis.push(res.data.data.materi[i]);
         }
@@ -2893,6 +2922,13 @@ __webpack_require__.r(__webpack_exports__);
         for (var i = 0; i < res.data.data.materi.length; i++) {
           _this3.anggotas.push(res.data.data.kelas_anggota[i]);
         }
+      });
+    },
+    loadPenggunaDetail: function loadPenggunaDetail() {
+      var _this4 = this;
+
+      axios.get(_helper_Const__WEBPACK_IMPORTED_MODULE_1__["default"].API_BASE_URL + "pengguna/" + localStorage.getItem(_helper_Const__WEBPACK_IMPORTED_MODULE_1__["default"].PENGGUNA_ID)).then(function (res) {
+        _this4.penggunaSaldo = _helper_TextTools__WEBPACK_IMPORTED_MODULE_2__["default"].getRupiah(res.data.data.saldo);
       });
     }
   }
@@ -39797,19 +39833,116 @@ var render = function() {
                   _c("strong", [_vm._v(_vm._s(_vm.harga))])
                 ]),
                 _vm._v(" "),
-                _c("button", { staticClass: "btn btn-warning w-100 mt-1" }, [
-                  _vm._v("BELI SEKARANG")
-                ])
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-warning w-100 mt-1",
+                    attrs: {
+                      "data-toggle": "modal",
+                      "data-target": "#beliConfirmationModal"
+                    }
+                  },
+                  [_vm._v("BELI SEKARANG")]
+                )
               ]
             )
           ])
         ])
-      ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "modal fade",
+          attrs: {
+            id: "beliConfirmationModal",
+            tabindex: "-1",
+            role: "dialog",
+            "aria-labelledby": "exampleModalLabel",
+            "aria-hidden": "true"
+          }
+        },
+        [
+          _c(
+            "div",
+            { staticClass: "modal-dialog", attrs: { role: "document" } },
+            [
+              _c("div", { staticClass: "modal-content" }, [
+                _vm._m(0),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-body" }, [
+                  _c("h5", [_vm._v("Anda yakin untuk membeli kelas ini ?")]),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v("Saldo anda saat ini:\n          "),
+                  _c("div", { staticClass: "text-danger" }, [
+                    _c("strong", [_vm._v("Rp. " + _vm._s(_vm.penggunaSaldo))])
+                  ]),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(
+                    "(saldo akan langsung terpotong saat anda menekan tombol beli)\n        "
+                  )
+                ]),
+                _vm._v(" "),
+                _vm._m(1)
+              ])
+            ]
+          )
+        ]
+      )
     ],
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
+        [_vm._v("Konfirmasi")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-secondary",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("Batal")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        { staticClass: "btn btn-primary", attrs: { type: "button" } },
+        [_vm._v("Beli")]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 

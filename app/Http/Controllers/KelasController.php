@@ -18,22 +18,21 @@ class KelasController extends Controller
 
     public function show($id)
     {
-        $materiTotal = 0;
         $kelasAnggotaTotal = 0;
 
         $rsp = [
-            'data' => Kelas::with(['pengguna',
-                'materi' => function ($materi) use (&$materiTotal) {
-                    $materiTotal = $materi->count();
-                    $materi->with(['materi','kuis'])->orderBy('created_at', 'ASC');
+            'data' => Kelas::with([
+                'pengguna',
+                'materi' => function ($materi) {
+                    $materi->with(['materi', 'kuis'])->orderBy('created_at', 'ASC');
                 },
                 'kelasAnggota' => function ($kelasAnggota) use (&$kelasAnggotaTotal) {
                     $kelasAnggotaTotal = $kelasAnggota->count();
                     $kelasAnggota->with(['pengguna'])->orderBy('id', 'DESC')->paginate(15);
-                }])
+                }
+            ])
                 ->find($id),
             'has_many_count' => [
-                'materi' => $materiTotal,
                 'kelasAnggota' => $kelasAnggotaTotal
             ]
         ];

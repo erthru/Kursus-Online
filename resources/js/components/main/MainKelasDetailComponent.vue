@@ -25,7 +25,41 @@
             <h1 class="display-5 mt-3">
               <strong>{{harga}}</strong>
             </h1>
-            <button class="btn btn-warning w-100 mt-1">BELI SEKARANG</button>
+            <button
+              class="btn btn-warning w-100 mt-1"
+              data-toggle="modal"
+              data-target="#beliConfirmationModal"
+            >BELI SEKARANG</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Beli Confirmation Modal -->
+    <div
+      class="modal fade"
+      id="beliConfirmationModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Konfirmasi</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <h5>Anda yakin untuk membeli kelas ini ?</h5>
+            <br />Saldo anda saat ini:
+            <div class="text-danger"><strong>Rp. {{ penggunaSaldo }}</strong></div>
+            <br />(saldo akan langsung terpotong saat anda menekan tombol beli)
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+            <button type="button" class="btn btn-primary">Beli</button>
           </div>
         </div>
       </div>
@@ -44,19 +78,20 @@ export default {
   data() {
     return {
       title: Const.TITLE,
-      pageMateri: 0,
       pageAnggota: 0,
       owner: {},
       kelasTitle: "",
       deskripsi: "",
       harga: "Rp. 0",
       materis: [],
-      anggotas: []
+      anggotas: [],
+      penggunaSaldo: "0"
     };
   },
   mounted() {
     this.loadKelasDetail();
-    this.loadKelasMateri("next");
+    this.loadKelasMateri();
+    this.loadPenggunaDetail();
   },
   methods: {
     loadKelasDetail() {
@@ -75,20 +110,8 @@ export default {
         });
     },
     loadKelasMateri(mod) {
-      if (mod == "next") {
-        this.pageMateri += 1;
-      } else {
-        this.pageMateri -= 1;
-      }
-
       axios
-        .get(
-          Const.API_BASE_URL +
-            "kelas/" +
-            this.$route.params.id +
-            "?page=" +
-            this.pageMateri
-        )
+        .get(Const.API_BASE_URL + "kelas/" + this.$route.params.id)
         .then(res => {
           for (var i = 0; i < res.data.data.materi.length; i++) {
             this.materis.push(res.data.data.materi[i]);
@@ -114,6 +137,17 @@ export default {
           for (var i = 0; i < res.data.data.materi.length; i++) {
             this.anggotas.push(res.data.data.kelas_anggota[i]);
           }
+        });
+    },
+    loadPenggunaDetail() {
+      axios
+        .get(
+          Const.API_BASE_URL +
+            "pengguna/" +
+            localStorage.getItem(Const.PENGGUNA_ID)
+        )
+        .then(res => {
+          this.penggunaSaldo = TextTools.getRupiah(res.data.data.saldo);
         });
     }
   }
