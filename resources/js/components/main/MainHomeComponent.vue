@@ -7,7 +7,7 @@
         <h1 class="display-4">Ingin Belajar Apa ?</h1>
         <p class="lead">Gunakan kotak pencarian di bawah untuk mencari kelas yang diinginkan.</p>
         <hr class="my-4" />
-        <form @submit.prevent="gotoCari()">
+        <form v-on:submit.prevent="gotoCari()">
           <label>Cari kelas</label>
           <div class="form-inline">
             <input type="text" name="query" class="form-control" v-model="txCariVal" placeholder="contoh: pemrograman" required />

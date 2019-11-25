@@ -8,7 +8,7 @@
         <div class="col-md-6">
           <h4>Kelas Detail</h4>
           <div class="alert alert-success" v-bind:hidden="successMsgIsHidden">{{successMsg}}</div>
-          <form @submit.prevent="updateKelas()">
+          <form v-on:submit.prevent="updateKelas()">
             <div class="form-group">
               <label>Nama Kelas</label>
               <input

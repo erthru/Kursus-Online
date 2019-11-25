@@ -10,7 +10,7 @@
           <small>Bergabung dengan kami.</small>
           <br />
           <br />
-          <form @submit.prevent="register()">
+          <form v-on:submit.prevent="register()">
             <div class="form-group">
               <label>Nama Depan</label>
               <input
@@ -88,7 +88,7 @@
           <small>Login jika telah memiliki akun</small>
           <br />
           <br />
-          <form @submit.prevent="login()">
+          <form v-on:submit.prevent="login()">
             <div class="form-group">
               <label>Email</label>
               <input
