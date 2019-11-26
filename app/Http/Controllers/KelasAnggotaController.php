@@ -12,8 +12,8 @@ class KelasAnggotaController extends Controller
         $rsp = [
             'data' => KelasAnggota::with(['pengguna', 'kelas'])
                 ->where('pengguna_id', $request->query('pengguna_id'))
-                ->orderBy('id', 'DESC')
-                ->paginate(15)
+                ->where('kelas_id', $request->query('kelas_id'))
+                ->first()
         ];
 
         return $rsp;

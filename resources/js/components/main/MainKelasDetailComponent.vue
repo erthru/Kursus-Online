@@ -6,6 +6,7 @@
       <div class="row">
         <div class="col-md-8">
           <h4>{{kelasTitle}}</h4>
+          <small>Oleh: {{ owner.nama_depan + ' ' + owner.nama_belakang }}</small>
           <p>{{deskripsi}}</p>
           <br />
           <h4>Daftar Materi:</h4>
@@ -25,10 +26,12 @@
             <h1 class="display-5 mt-3">
               <strong>{{harga}}</strong>
             </h1>
+            <small v-if="alreadyBuy">Anda telah berada di kelas ini</small>
             <button
               class="btn btn-warning w-100 mt-1"
               data-toggle="modal"
               data-target="#beliConfirmationModal"
+              v-if="owner.id != penggunaId && !alreadyBuy"
             >BELI SEKARANG</button>
           </div>
         </div>
@@ -54,12 +57,45 @@
           <div class="modal-body">
             <h5>Anda yakin untuk membeli kelas ini ?</h5>
             <br />Saldo anda saat ini:
-            <div class="text-danger"><strong>Rp. {{ penggunaSaldo }}</strong></div>
+            <div class="text-danger">
+              <strong>Rp. {{ penggunaSaldo }}</strong>
+            </div>
             <br />(saldo akan langsung terpotong saat anda menekan tombol beli)
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-            <button type="button" class="btn btn-primary">Beli</button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-dismiss="modal"
+              v-on:click="beli()"
+            >Beli</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Beli Information Modal -->
+    <div
+      class="modal fade"
+      id="beliInformationModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Informasi</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <h5>Keterangan Pembelian</h5>
+            {{ keteranganPembelian }}
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" v-on:click="reloadPage()">Tutup</button>
           </div>
         </div>
       </div>
@@ -81,19 +117,40 @@ export default {
       pageAnggota: 0,
       owner: {},
       kelasTitle: "",
+      kelasId: "",
       deskripsi: "",
       harga: "Rp. 0",
       materis: [],
       anggotas: [],
-      penggunaSaldo: "0"
+      penggunaSaldo: "0",
+      penggunaId: "",
+      alreadyBuy: false,
+      keteranganPembelian: ""
     };
   },
   mounted() {
+    this.penggunaId = localStorage.getItem(Const.PENGGUNA_ID);
+
     this.loadKelasDetail();
     this.loadKelasMateri();
     this.loadPenggunaDetail();
   },
   methods: {
+    checkAlreadyBuy() {
+      axios
+        .get(
+          Const.API_BASE_URL +
+            "kelas_anggota/check/anggota?pengguna_id=" +
+            this.penggunaId +
+            "&kelas_id=" +
+            this.kelasId
+        )
+        .then(res => {
+          if (res.data.data != null) {
+            this.alreadyBuy = true;
+          }
+        });
+    },
     loadKelasDetail() {
       axios
         .get(Const.API_BASE_URL + "kelas/" + this.$route.params.id)
@@ -103,6 +160,7 @@ export default {
           this.owner = res.data.data.pengguna;
           this.deskripsi = res.data.data.deskripsi;
           this.harga = "Rp. " + TextTools.getRupiah(res.data.data.harga);
+          this.kelasId = res.data.data.id;
 
           if (this.harga == "Rp. 0") {
             this.harga = "GRATIS";
@@ -141,14 +199,55 @@ export default {
     },
     loadPenggunaDetail() {
       axios
-        .get(
-          Const.API_BASE_URL +
-            "pengguna/" +
-            localStorage.getItem(Const.PENGGUNA_ID)
-        )
+        .get(Const.API_BASE_URL + "pengguna/" + this.penggunaId)
         .then(res => {
           this.penggunaSaldo = TextTools.getRupiah(res.data.data.saldo);
+          this.checkAlreadyBuy();
         });
+    },
+    beli() {
+      $("#beliInformationModal").modal();
+
+      this.keteranganPembelian = "Memproses...";
+
+      if (
+        parseInt(TextTools.cleanRupiah(this.penggunaSaldo)) >=
+        parseInt(TextTools.cleanRupiah(this.harga == "GRATIS" ? "0" : this.harga))
+      ) {
+        const body = {
+          saldo: TextTools.cleanRupiah(this.harga)
+        };
+
+        axios
+          .put(
+            Const.API_BASE_URL + "pengguna/" + this.penggunaId + "/saldo/min",
+            body
+          )
+          .then(res => {
+            const body2 = {
+              kelas_id: this.kelasId,
+              pengguna_id: this.penggunaId
+            };
+
+            axios
+              .post(Const.API_BASE_URL + "kelas_anggota", body2)
+              .then(res => {
+                this.keteranganPembelian = "Pembelian berhasil, terima kasih";
+              })
+              .catch(err => {
+                this.keteranganPembelian = "Terjadi kesalah, coba lagi";
+              });
+          })
+          .catch(err => {
+            this.keteranganPembelian = "Terjadi kesalah, coba lagi";
+          });
+      } else {
+        this.keteranganPembelian =
+          "Pembelian gagal, saldo tidak mencukupi. Silahkan topup saldo anda.";
+      }
+    },
+    reloadPage(){
+      this.$router.go(0);
     }
   }
 };

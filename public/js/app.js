@@ -2859,6 +2859,42 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2872,45 +2908,60 @@ __webpack_require__.r(__webpack_exports__);
       pageAnggota: 0,
       owner: {},
       kelasTitle: "",
+      kelasId: "",
       deskripsi: "",
       harga: "Rp. 0",
       materis: [],
       anggotas: [],
-      penggunaSaldo: "0"
+      penggunaSaldo: "0",
+      penggunaId: "",
+      alreadyBuy: false,
+      keteranganPembelian: ""
     };
   },
   mounted: function mounted() {
+    this.penggunaId = localStorage.getItem(_helper_Const__WEBPACK_IMPORTED_MODULE_1__["default"].PENGGUNA_ID);
     this.loadKelasDetail();
     this.loadKelasMateri();
     this.loadPenggunaDetail();
   },
   methods: {
-    loadKelasDetail: function loadKelasDetail() {
+    checkAlreadyBuy: function checkAlreadyBuy() {
       var _this = this;
 
-      axios.get(_helper_Const__WEBPACK_IMPORTED_MODULE_1__["default"].API_BASE_URL + "kelas/" + this.$route.params.id).then(function (res) {
-        _this.kelasTitle = res.data.data.nama;
-        _this.title += _this.kelasTitle;
-        _this.owner = res.data.data.pengguna;
-        _this.deskripsi = res.data.data.deskripsi;
-        _this.harga = "Rp. " + _helper_TextTools__WEBPACK_IMPORTED_MODULE_2__["default"].getRupiah(res.data.data.harga);
+      axios.get(_helper_Const__WEBPACK_IMPORTED_MODULE_1__["default"].API_BASE_URL + "kelas_anggota/check/anggota?pengguna_id=" + this.penggunaId + "&kelas_id=" + this.kelasId).then(function (res) {
+        if (res.data.data != null) {
+          _this.alreadyBuy = true;
+        }
+      });
+    },
+    loadKelasDetail: function loadKelasDetail() {
+      var _this2 = this;
 
-        if (_this.harga == "Rp. 0") {
-          _this.harga = "GRATIS";
+      axios.get(_helper_Const__WEBPACK_IMPORTED_MODULE_1__["default"].API_BASE_URL + "kelas/" + this.$route.params.id).then(function (res) {
+        _this2.kelasTitle = res.data.data.nama;
+        _this2.title += _this2.kelasTitle;
+        _this2.owner = res.data.data.pengguna;
+        _this2.deskripsi = res.data.data.deskripsi;
+        _this2.harga = "Rp. " + _helper_TextTools__WEBPACK_IMPORTED_MODULE_2__["default"].getRupiah(res.data.data.harga);
+        _this2.kelasId = res.data.data.id;
+
+        if (_this2.harga == "Rp. 0") {
+          _this2.harga = "GRATIS";
         }
       });
     },
     loadKelasMateri: function loadKelasMateri(mod) {
-      var _this2 = this;
+      var _this3 = this;
 
       axios.get(_helper_Const__WEBPACK_IMPORTED_MODULE_1__["default"].API_BASE_URL + "kelas/" + this.$route.params.id).then(function (res) {
         for (var i = 0; i < res.data.data.materi.length; i++) {
-          _this2.materis.push(res.data.data.materi[i]);
+          _this3.materis.push(res.data.data.materi[i]);
         }
       });
     },
     loadKelasAnggota: function loadKelasAnggota(mod) {
-      var _this3 = this;
+      var _this4 = this;
 
       if (mod == "next") {
         this.pageAnggota += 1;
@@ -2920,16 +2971,48 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get(_helper_Const__WEBPACK_IMPORTED_MODULE_1__["default"].API_BASE_URL + "kelas/" + this.$route.params.id + "?page=" + this.pageAnggota).then(function (res) {
         for (var i = 0; i < res.data.data.materi.length; i++) {
-          _this3.anggotas.push(res.data.data.kelas_anggota[i]);
+          _this4.anggotas.push(res.data.data.kelas_anggota[i]);
         }
       });
     },
     loadPenggunaDetail: function loadPenggunaDetail() {
-      var _this4 = this;
+      var _this5 = this;
 
-      axios.get(_helper_Const__WEBPACK_IMPORTED_MODULE_1__["default"].API_BASE_URL + "pengguna/" + localStorage.getItem(_helper_Const__WEBPACK_IMPORTED_MODULE_1__["default"].PENGGUNA_ID)).then(function (res) {
-        _this4.penggunaSaldo = _helper_TextTools__WEBPACK_IMPORTED_MODULE_2__["default"].getRupiah(res.data.data.saldo);
+      axios.get(_helper_Const__WEBPACK_IMPORTED_MODULE_1__["default"].API_BASE_URL + "pengguna/" + this.penggunaId).then(function (res) {
+        _this5.penggunaSaldo = _helper_TextTools__WEBPACK_IMPORTED_MODULE_2__["default"].getRupiah(res.data.data.saldo);
+
+        _this5.checkAlreadyBuy();
       });
+    },
+    beli: function beli() {
+      var _this6 = this;
+
+      $("#beliInformationModal").modal();
+      this.keteranganPembelian = "Memproses...";
+
+      if (parseInt(_helper_TextTools__WEBPACK_IMPORTED_MODULE_2__["default"].cleanRupiah(this.penggunaSaldo)) >= parseInt(_helper_TextTools__WEBPACK_IMPORTED_MODULE_2__["default"].cleanRupiah(this.harga == "GRATIS" ? "0" : this.harga))) {
+        var body = {
+          saldo: _helper_TextTools__WEBPACK_IMPORTED_MODULE_2__["default"].cleanRupiah(this.harga)
+        };
+        axios.put(_helper_Const__WEBPACK_IMPORTED_MODULE_1__["default"].API_BASE_URL + "pengguna/" + this.penggunaId + "/saldo/min", body).then(function (res) {
+          var body2 = {
+            kelas_id: _this6.kelasId,
+            pengguna_id: _this6.penggunaId
+          };
+          axios.post(_helper_Const__WEBPACK_IMPORTED_MODULE_1__["default"].API_BASE_URL + "kelas_anggota", body2).then(function (res) {
+            _this6.keteranganPembelian = "Pembelian berhasil, terima kasih";
+          })["catch"](function (err) {
+            _this6.keteranganPembelian = "Terjadi kesalah, coba lagi";
+          });
+        })["catch"](function (err) {
+          _this6.keteranganPembelian = "Terjadi kesalah, coba lagi";
+        });
+      } else {
+        this.keteranganPembelian = "Pembelian gagal, saldo tidak mencukupi. Silahkan topup saldo anda.";
+      }
+    },
+    reloadPage: function reloadPage() {
+      this.$router.go(0);
     }
   }
 });
@@ -39785,6 +39868,13 @@ var render = function() {
             [
               _c("h4", [_vm._v(_vm._s(_vm.kelasTitle))]),
               _vm._v(" "),
+              _c("small", [
+                _vm._v(
+                  "Oleh: " +
+                    _vm._s(_vm.owner.nama_depan + " " + _vm.owner.nama_belakang)
+                )
+              ]),
+              _vm._v(" "),
               _c("p", [_vm._v(_vm._s(_vm.deskripsi))]),
               _vm._v(" "),
               _c("br"),
@@ -39833,17 +39923,23 @@ var render = function() {
                   _c("strong", [_vm._v(_vm._s(_vm.harga))])
                 ]),
                 _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-warning w-100 mt-1",
-                    attrs: {
-                      "data-toggle": "modal",
-                      "data-target": "#beliConfirmationModal"
-                    }
-                  },
-                  [_vm._v("BELI SEKARANG")]
-                )
+                _vm.alreadyBuy
+                  ? _c("small", [_vm._v("Anda telah berada di kelas ini")])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.owner.id != _vm.penggunaId && !_vm.alreadyBuy
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-warning w-100 mt-1",
+                        attrs: {
+                          "data-toggle": "modal",
+                          "data-target": "#beliConfirmationModal"
+                        }
+                      },
+                      [_vm._v("BELI SEKARANG")]
+                    )
+                  : _vm._e()
               ]
             )
           ])
@@ -39885,7 +39981,79 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(1)
+                _c("div", { staticClass: "modal-footer" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-secondary",
+                      attrs: { type: "button", "data-dismiss": "modal" }
+                    },
+                    [_vm._v("Batal")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: { type: "button", "data-dismiss": "modal" },
+                      on: {
+                        click: function($event) {
+                          return _vm.beli()
+                        }
+                      }
+                    },
+                    [_vm._v("Beli")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "modal fade",
+          attrs: {
+            id: "beliInformationModal",
+            tabindex: "-1",
+            role: "dialog",
+            "aria-labelledby": "exampleModalLabel"
+          }
+        },
+        [
+          _c(
+            "div",
+            { staticClass: "modal-dialog", attrs: { role: "document" } },
+            [
+              _c("div", { staticClass: "modal-content" }, [
+                _vm._m(1),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-body" }, [
+                  _c("h5", [_vm._v("Keterangan Pembelian")]),
+                  _vm._v(
+                    "\n          " +
+                      _vm._s(_vm.keteranganPembelian) +
+                      "\n        "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-footer" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-secondary",
+                      attrs: { type: "button", "data-dismiss": "modal" },
+                      on: {
+                        click: function($event) {
+                          return _vm.reloadPage()
+                        }
+                      }
+                    },
+                    [_vm._v("Tutup")]
+                  )
+                ])
               ])
             ]
           )
@@ -39925,20 +40093,24 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-footer" }, [
+    return _c("div", { staticClass: "modal-header" }, [
       _c(
-        "button",
-        {
-          staticClass: "btn btn-secondary",
-          attrs: { type: "button", "data-dismiss": "modal" }
-        },
-        [_vm._v("Batal")]
+        "h5",
+        { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
+        [_vm._v("Informasi")]
       ),
       _vm._v(" "),
       _c(
         "button",
-        { staticClass: "btn btn-primary", attrs: { type: "button" } },
-        [_vm._v("Beli")]
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
       )
     ])
   }
@@ -55738,6 +55910,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   getRupiah: function getRupiah(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  },
+  cleanRupiah: function cleanRupiah(x) {
+    return x.replace(/,/g, "").replace(" ", "").replace("Rp.", "");
   }
 });
 
