@@ -3056,6 +3056,183 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/main/MainKelasSayaMateriDetailComponent.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/main/MainKelasSayaMateriDetailComponent.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue_headful__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-headful */ "./node_modules/vue-headful/dist/vue-headful.js");
+/* harmony import */ var vue_headful__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_headful__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _helper_Const__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../helper/Const */ "./resources/js/helper/Const.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    VueHeadful: vue_headful__WEBPACK_IMPORTED_MODULE_0___default.a
+  },
+  data: function data() {
+    return {
+      title: _helper_Const__WEBPACK_IMPORTED_MODULE_1__["default"].TITLE + "Detail Materi",
+      selected: "",
+      materiMateriId: "",
+      materiKkuisId: "",
+      // form materi
+      txJudulVal: "",
+      txKontenVal: "",
+      // form kuis
+      txPertanyaanVal: "",
+      txJawabanVal: "",
+      btnPerbaruiIsDisabled: false,
+      btnHapusIsDisabled: false
+    };
+  },
+  mounted: function mounted() {
+    this.loadDetail();
+  },
+  methods: {
+    loadDetail: function loadDetail() {
+      var _this = this;
+
+      axios.get(_helper_Const__WEBPACK_IMPORTED_MODULE_1__["default"].API_BASE_URL + "materi/" + this.$route.params.materi_id).then(function (res) {
+        _this.selected = res.data.data.tipe;
+
+        if (_this.selected == "MATERI") {
+          _this.txJudulVal = res.data.data.materi[0].judul;
+          _this.txKontenVal = res.data.data.materi[0].konten;
+          _this.materiMateriId = res.data.data.materi[0].id;
+        } else {
+          _this.txPertanyaanVal = res.data.data.kuis[0].pertanyaan;
+          _this.txJawabanVal = res.data.data.kuis[0].jawaban;
+          _this.materiKkuisId = res.data.data.kuis[0].id;
+        }
+      });
+    },
+    update: function update() {
+      var _this2 = this;
+
+      this.btnPerbaruiIsDisabled = true;
+
+      if (this.selected == "MATERI") {
+        var bodyMateri = {
+          judul: this.txJudulVal,
+          konten: this.txKontenVal,
+          materi_id: this.$route.params.materi_id
+        };
+        axios.put(_helper_Const__WEBPACK_IMPORTED_MODULE_1__["default"].API_BASE_URL + "materi_materi/" + this.materiMateriId, bodyMateri).then(function (res) {
+          _this2.$router.push("/kelas_saya/" + _this2.$route.params.kelas_id);
+        });
+      } else {
+        var bodyKuis = {
+          pertanyaan: this.txPertanyaanVal,
+          jawaban: this.txJawabanVal,
+          materi_id: this.$route.params.materi_id
+        };
+        axios.put(_helper_Const__WEBPACK_IMPORTED_MODULE_1__["default"].API_BASE_URL + "materi_kuis/" + this.materiKkuisId, bodyKuis).then(function (res) {
+          _this2.$router.push("/kelas_saya/" + _this2.$route.params.kelas_id);
+        });
+      }
+    },
+    hapus: function hapus() {
+      var _this3 = this;
+
+      this.btnHapusIsDisabled = true;
+      axios["delete"](_helper_Const__WEBPACK_IMPORTED_MODULE_1__["default"].API_BASE_URL + "materi/" + this.$route.params.materi_id).then(function (res) {
+        _this3.$router.push("/kelas_saya/" + _this3.$route.params.kelas_id);
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/main/MainKelasSayaMateriTambahComponent.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/main/MainKelasSayaMateriTambahComponent.vue?vue&type=script&lang=js& ***!
@@ -41413,6 +41590,254 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/main/MainKelasSayaMateriDetailComponent.vue?vue&type=template&id=2aa2998a&":
+/*!******************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/main/MainKelasSayaMateriDetailComponent.vue?vue&type=template&id=2aa2998a& ***!
+  \******************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("vue-headful", { attrs: { title: _vm.title } }),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-6" }, [
+            _c("h4", [_vm._v("Perbarui Materi")]),
+            _vm._v(" "),
+            _vm.selected == "MATERI"
+              ? _c("div", [
+                  _c(
+                    "form",
+                    {
+                      on: {
+                        submit: function($event) {
+                          $event.preventDefault()
+                          return _vm.update()
+                        }
+                      }
+                    },
+                    [
+                      _c("div", { staticClass: "form-group" }, [
+                        _vm._v("\n              Judul\n              "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.txJudulVal,
+                              expression: "txJudulVal"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            placeholder: "Contoh: Pengantar pemrograman",
+                            required: ""
+                          },
+                          domProps: { value: _vm.txJudulVal },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.txJudulVal = $event.target.value
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
+                        _vm._v("\n              Konten\n              "),
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.txKontenVal,
+                              expression: "txKontenVal"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            placeholder: "Isi konten",
+                            required: ""
+                          },
+                          domProps: { value: _vm.txKontenVal },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.txKontenVal = $event.target.value
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary",
+                          attrs: {
+                            type: "submit",
+                            disabled: _vm.btnPerbaruiIsDisabled
+                          }
+                        },
+                        [_vm._v("Perbarui")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-danger",
+                          attrs: {
+                            type: "button",
+                            disabled: _vm.btnHapusIsDisabled
+                          },
+                          on: {
+                            click: function($event) {
+                              return _vm.hapus()
+                            }
+                          }
+                        },
+                        [_vm._v("Hapus")]
+                      )
+                    ]
+                  )
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.selected == "KUIS"
+              ? _c("div", [
+                  _c(
+                    "form",
+                    {
+                      on: {
+                        submit: function($event) {
+                          $event.preventDefault()
+                          return _vm.update()
+                        }
+                      }
+                    },
+                    [
+                      _c("div", { staticClass: "form-group" }, [
+                        _vm._v("\n              Pertanyaan\n              "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.txPertanyaanVal,
+                              expression: "txPertanyaanVal"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            placeholder: "Contoh: 1 + 1 ?",
+                            required: ""
+                          },
+                          domProps: { value: _vm.txPertanyaanVal },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.txPertanyaanVal = $event.target.value
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
+                        _vm._v("\n              Jawaban\n              "),
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.txJawabanVal,
+                              expression: "txJawabanVal"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            placeholder: "Isi Jawaban",
+                            required: ""
+                          },
+                          domProps: { value: _vm.txJawabanVal },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.txJawabanVal = $event.target.value
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary",
+                          attrs: {
+                            type: "submit",
+                            disabled: _vm.btnPerbaruiIsDisabled
+                          }
+                        },
+                        [_vm._v("Perbarui")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-danger",
+                          attrs: {
+                            type: "button",
+                            disabled: _vm.btnHapusIsDisabled
+                          },
+                          on: {
+                            click: function($event) {
+                              return _vm.hapus()
+                            }
+                          }
+                        },
+                        [_vm._v("Hapus")]
+                      )
+                    ]
+                  )
+                ])
+              : _vm._e()
+          ])
+        ])
+      ])
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/main/MainKelasSayaMateriTambahComponent.vue?vue&type=template&id=499b8072&":
 /*!******************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/main/MainKelasSayaMateriTambahComponent.vue?vue&type=template&id=499b8072& ***!
@@ -57197,10 +57622,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_main_MainHomeComponent__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/main/MainHomeComponent */ "./resources/js/components/main/MainHomeComponent.vue");
 /* harmony import */ var _components_main_MainKelasSayaComponent__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/main/MainKelasSayaComponent */ "./resources/js/components/main/MainKelasSayaComponent.vue");
 /* harmony import */ var _components_main_MainKelasSayaDetailComponent__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/main/MainKelasSayaDetailComponent */ "./resources/js/components/main/MainKelasSayaDetailComponent.vue");
-/* harmony import */ var _components_main_MainCariKelasComponent__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/main/MainCariKelasComponent */ "./resources/js/components/main/MainCariKelasComponent.vue");
-/* harmony import */ var _components_main_MainKelasDetailComponent__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/main/MainKelasDetailComponent */ "./resources/js/components/main/MainKelasDetailComponent.vue");
-/* harmony import */ var _components_main_MainProfileComponent__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/main/MainProfileComponent */ "./resources/js/components/main/MainProfileComponent.vue");
-/* harmony import */ var _components_main_MainKelasSayaMateriTambahComponent__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/main/MainKelasSayaMateriTambahComponent */ "./resources/js/components/main/MainKelasSayaMateriTambahComponent.vue");
+/* harmony import */ var _components_main_MainKelasSayaMateriTambahComponent__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/main/MainKelasSayaMateriTambahComponent */ "./resources/js/components/main/MainKelasSayaMateriTambahComponent.vue");
+/* harmony import */ var _components_main_MainKelasSayaMateriDetailComponent__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/main/MainKelasSayaMateriDetailComponent */ "./resources/js/components/main/MainKelasSayaMateriDetailComponent.vue");
+/* harmony import */ var _components_main_MainCariKelasComponent__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/main/MainCariKelasComponent */ "./resources/js/components/main/MainCariKelasComponent.vue");
+/* harmony import */ var _components_main_MainKelasDetailComponent__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/main/MainKelasDetailComponent */ "./resources/js/components/main/MainKelasDetailComponent.vue");
+/* harmony import */ var _components_main_MainProfileComponent__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/main/MainProfileComponent */ "./resources/js/components/main/MainProfileComponent.vue");
 
  // component
 // main
@@ -57209,6 +57635,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
  // main
+
 
 
 
@@ -57234,16 +57661,19 @@ var routes = [{
     component: _components_main_MainKelasSayaDetailComponent__WEBPACK_IMPORTED_MODULE_8__["default"]
   }, {
     path: '/kelas_saya/:id/materi/add',
-    component: _components_main_MainKelasSayaMateriTambahComponent__WEBPACK_IMPORTED_MODULE_12__["default"]
+    component: _components_main_MainKelasSayaMateriTambahComponent__WEBPACK_IMPORTED_MODULE_9__["default"]
+  }, {
+    path: '/kelas_saya/:kelas_id/materi/:materi_id',
+    component: _components_main_MainKelasSayaMateriDetailComponent__WEBPACK_IMPORTED_MODULE_10__["default"]
   }, {
     path: "/cari",
-    component: _components_main_MainCariKelasComponent__WEBPACK_IMPORTED_MODULE_9__["default"]
+    component: _components_main_MainCariKelasComponent__WEBPACK_IMPORTED_MODULE_11__["default"]
   }, {
     path: "/kelas/:id",
-    component: _components_main_MainKelasDetailComponent__WEBPACK_IMPORTED_MODULE_10__["default"]
+    component: _components_main_MainKelasDetailComponent__WEBPACK_IMPORTED_MODULE_12__["default"]
   }, {
     path: "/profile",
-    component: _components_main_MainProfileComponent__WEBPACK_IMPORTED_MODULE_11__["default"]
+    component: _components_main_MainProfileComponent__WEBPACK_IMPORTED_MODULE_13__["default"]
   }]
 }, {
   path: '/bergabung',
@@ -57912,6 +58342,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MainKelasSayaDetailComponent_vue_vue_type_template_id_337836b4___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MainKelasSayaDetailComponent_vue_vue_type_template_id_337836b4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/main/MainKelasSayaMateriDetailComponent.vue":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/components/main/MainKelasSayaMateriDetailComponent.vue ***!
+  \*****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _MainKelasSayaMateriDetailComponent_vue_vue_type_template_id_2aa2998a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MainKelasSayaMateriDetailComponent.vue?vue&type=template&id=2aa2998a& */ "./resources/js/components/main/MainKelasSayaMateriDetailComponent.vue?vue&type=template&id=2aa2998a&");
+/* harmony import */ var _MainKelasSayaMateriDetailComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MainKelasSayaMateriDetailComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/main/MainKelasSayaMateriDetailComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _MainKelasSayaMateriDetailComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _MainKelasSayaMateriDetailComponent_vue_vue_type_template_id_2aa2998a___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _MainKelasSayaMateriDetailComponent_vue_vue_type_template_id_2aa2998a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/main/MainKelasSayaMateriDetailComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/main/MainKelasSayaMateriDetailComponent.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************!*\
+  !*** ./resources/js/components/main/MainKelasSayaMateriDetailComponent.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MainKelasSayaMateriDetailComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./MainKelasSayaMateriDetailComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/main/MainKelasSayaMateriDetailComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MainKelasSayaMateriDetailComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/main/MainKelasSayaMateriDetailComponent.vue?vue&type=template&id=2aa2998a&":
+/*!************************************************************************************************************!*\
+  !*** ./resources/js/components/main/MainKelasSayaMateriDetailComponent.vue?vue&type=template&id=2aa2998a& ***!
+  \************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MainKelasSayaMateriDetailComponent_vue_vue_type_template_id_2aa2998a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./MainKelasSayaMateriDetailComponent.vue?vue&type=template&id=2aa2998a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/main/MainKelasSayaMateriDetailComponent.vue?vue&type=template&id=2aa2998a&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MainKelasSayaMateriDetailComponent_vue_vue_type_template_id_2aa2998a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MainKelasSayaMateriDetailComponent_vue_vue_type_template_id_2aa2998a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

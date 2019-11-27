@@ -14,10 +14,11 @@ import MainComponent from './components/main/MainComponent';
 import MainHomeComponent from './components/main/MainHomeComponent';
 import MainKelasSayaComponent from './components/main/MainKelasSayaComponent';
 import MainKelasSayaDetailComponent from './components/main/MainKelasSayaDetailComponent';
+import MainKelasSayaMateriTambahComponent from './components/main/MainKelasSayaMateriTambahComponent';
+import MainKelasSayaMateriDetailComponent from './components/main/MainKelasSayaMateriDetailComponent';
 import MainCariKelasComponent from './components/main/MainCariKelasComponent';
 import MainKelasDetailComponent from './components/main/MainKelasDetailComponent';
 import MainProfileComponent from './components/main/MainProfileComponent';
-import MainKelasSayaMateriTambahComponent from './components/main/MainKelasSayaMateriTambahComponent';
 
 window.Vue = require('vue');
 Vue.use(VueRouter);
@@ -42,6 +43,10 @@ const routes = [
             {
                 path:'/kelas_saya/:id/materi/add',
                 component: MainKelasSayaMateriTambahComponent
+            },
+            {
+                path:'/kelas_saya/:kelas_id/materi/:materi_id',
+                component: MainKelasSayaMateriDetailComponent
             },
             {
                 path:"/cari",
