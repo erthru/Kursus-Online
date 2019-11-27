@@ -43,7 +43,10 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContentUser">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <router-link class="nav-link" to="/buka_kelas">Buka Kelas</router-link>
+            <router-link class="nav-link" to="/kelas_saya">Kelas Saya</router-link>
+          </li>
+          <li class="nav-item active">
+            <router-link class="nav-link" to="/kelas_dibeli">Kelas Yang Dibeli</router-link>
           </li>
         </ul>
         <ul class="navbar-nav ml-auto">

@@ -19,6 +19,18 @@ class KelasAnggotaController extends Controller
         return $rsp;
     }
 
+    public function anggotaKelas(Request $request)
+    {
+        $rsp = [
+            'data' => KelasAnggota::with(['pengguna','kelas'])
+            ->where('pengguna_id', $request->query('pengguna_id'))
+            ->orderBy('id','DESC')
+            ->paginate(15)
+        ];
+
+        return $rsp;
+    }
+
     public function store(Request $request)
     {
         $body = [

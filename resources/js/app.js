@@ -12,10 +12,11 @@ import LogoutComponent from './components/default/LogoutComponent';
 // main
 import MainComponent from './components/main/MainComponent';
 import MainHomeComponent from './components/main/MainHomeComponent';
-import MainBukaKelasComponent from './components/main/MainBukaKelasComponent';
-import MainBukaKelasDetailComponent from './components/main/MainBukaKelasDetailComponent';
+import MainKelasSayaComponent from './components/main/MainKelasSayaComponent';
+import MainKelasSayaDetailComponent from './components/main/MainKelasSayaDetailComponent';
 import MainCariKelasComponent from './components/main/MainCariKelasComponent';
 import MainKelasDetailComponent from './components/main/MainKelasDetailComponent';
+import MainProfileComponent from './components/main/MainProfileComponent';
 
 window.Vue = require('vue');
 Vue.use(VueRouter);
@@ -30,12 +31,12 @@ const routes = [
                 component: MainHomeComponent
             },
             {
-                path:'/buka_kelas',
-                component: MainBukaKelasComponent
+                path:'/kelas_saya',
+                component: MainKelasSayaComponent
             },
             {
-                path:'/buka_kelas/:id',
-                component: MainBukaKelasDetailComponent
+                path:'/kelas_saya/:id',
+                component: MainKelasSayaDetailComponent
             },
             {
                 path:"/cari",
@@ -44,6 +45,10 @@ const routes = [
             {
                 path:"/kelas/:id",
                 component: MainKelasDetailComponent
+            },
+            {
+                path:"/profile",
+                component: MainProfileComponent
             }
         ]
     },

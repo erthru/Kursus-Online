@@ -51,7 +51,7 @@
         <div class="col-md-6">
           <h4>Daftar Kelas Saya</h4>
           <div v-for="item in kelas" :key="item.id">
-            <router-link class="text-primary" :to="'/buka_kelas/'+item.id">{{item.nama}}</router-link>
+            <router-link class="text-primary" :to="'/kelas_saya/'+item.id">{{item.nama}}</router-link>
           </div>
           <div style="margin-top:10px">
             <nav aria-label="Page navigation example">
@@ -89,7 +89,7 @@ export default {
   },
   data() {
     return {
-      title: Const.TITLE + "Buka Kelas",
+      title: Const.TITLE + "Kelas Saya",
       page: 0,
       totalPage: 0,
       pageNextElementVal: "page-item disabled",

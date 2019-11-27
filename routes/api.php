@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 
 // Kelas Anggota
 Route::get('/kelas_anggota/check/anggota','KelasAnggotaController@checkAnggota');
+Route::get('/kelas_anggota/anggota','KelasAnggotaController@anggotaKelas');
 Route::post('/kelas_anggota','KelasAnggotaController@store');
 
 // Kelas

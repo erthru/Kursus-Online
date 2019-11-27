@@ -97,7 +97,7 @@ export default {
   },
   data() {
     return {
-      title: Const.TITLE + "Buka Kelas Detail",
+      title: Const.TITLE + "Kelas Saya Detail",
       daftarSiswa: [],
       pageSiswa: 0,
       pageSiswaTotal: 0,
