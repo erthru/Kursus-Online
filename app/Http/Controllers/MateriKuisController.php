@@ -11,7 +11,8 @@ class MateriKuisController extends Controller
     {
         $body = [
             'pertanyaan' => $request->input('pertanyaan'),
-            'jawaban' => $request->input('jawaban')
+            'jawaban' => $request->input('jawaban'),
+            'materi_id' => $request->input('materi_id')
         ];
 
         $rsp = [
@@ -27,7 +28,8 @@ class MateriKuisController extends Controller
 
         $body = [
             'pertanyaan' => $request->input('pertanyaan'),
-            'jawaban' => $request->input('jawaban')
+            'jawaban' => $request->input('jawaban'),
+            'materi_id' => $request->input('materi_id')
         ];
 
         $materiKuis->update($body);

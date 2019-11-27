@@ -60,9 +60,10 @@
             Belum ada daftar siswa yang terdaftar
             <br />Kelas masih dapat dihapus saat belum ada siswa yang terdaftar
           </small>
-          <div v-for="(siswa, index) in daftarSiswa" :key="siswa.id">
-            {{index+=1}}. {{siswa.pengguna.nama_depan}} {{siswa.pengguna.nama_belakang}}
-          </div>
+          <div
+            v-for="(siswa, index) in daftarSiswa"
+            :key="siswa.id"
+          >{{index+=1}}. {{siswa.pengguna.nama_depan}} {{siswa.pengguna.nama_belakang}}</div>
           <div style="margin-top:10px">
             <nav aria-label="Page navigation example">
               <ul class="pagination">
@@ -80,6 +81,24 @@
           </div>
         </div>
       </div>
+      <br />
+      <hr />
+      <div class="row">
+        <div class="col-md-9">
+          <h4>Materi</h4>
+        </div>
+        <div class="col-md-1 offset-md-2">
+          <router-link class="text-primary" :to="'/kelas_saya/'+id+'/materi/add'">Tambah</router-link>
+        </div>
+      </div>
+      <small v-if="materis.length == 0">belum ada materi.</small>
+      <div v-for="(materi, index) in materis" :key="materi.id">
+        <router-link
+          class="text-primary"
+          :to="'/kelas_saya/'+id+'/materi/' + materi.id"
+        >{{(index += 1) + '. ' + (materi.tipe == "KUIS" ? "Kuis" : materi.materi[0].judul)}}</router-link>
+      </div>
+      <br />
     </div>
   </div>
 </template>
@@ -98,6 +117,7 @@ export default {
   data() {
     return {
       title: Const.TITLE + "Kelas Saya Detail",
+      id: this.$route.params.id,
       daftarSiswa: [],
       pageSiswa: 0,
       pageSiswaTotal: 0,
@@ -105,6 +125,7 @@ export default {
       pagePrevSiswa: "page-item disabled",
       successMsg: "",
       successMsgIsHidden: true,
+      materis: [],
 
       // form kelas detail
       txNamaKelasVal: "",
@@ -126,6 +147,7 @@ export default {
           this.txNamaKelasVal = res.data.data.nama;
           this.txDeskripsiVal = res.data.data.deskripsi;
           this.txHargaVal = res.data.data.harga;
+          this.materis = res.data.data.materi;
         });
     },
     loadSiswa(mod) {
@@ -136,7 +158,13 @@ export default {
       }
 
       axios
-        .get(Const.API_BASE_URL + "kelas/" + this.$route.params.id + "?page="+this.pageSiswa)
+        .get(
+          Const.API_BASE_URL +
+            "kelas/" +
+            this.$route.params.id +
+            "?page=" +
+            this.pageSiswa
+        )
         .then(res => {
           if (parseInt(res.data.has_many_count.kelasAnggota) > 0) {
             this.btnDeleteKelasDetailIsHidden = true;

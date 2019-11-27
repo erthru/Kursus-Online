@@ -32,6 +32,14 @@ Route::post('/materi','MateriController@store');
 Route::put('/materi/{id}','MateriController@update');
 Route::delete('/materi/{id}','MateriController@delete');
 
+// Materi Materi
+Route::post('/materi_materi', 'MateriMateriController@store');
+Route::put('/materi_materi/{id}', 'MateriMateriController@update');
+
+// Materi Kuis
+Route::post('/materi_kuis', 'MateriKuisController@store');
+Route::put('/materi_kuis/{id}', 'MateriKuisController@update');
+
 // Pengguna
 Route::get('/pengguna','PenggunaController@all');
 Route::get('/pengguna/{id}','PenggunaController@show');

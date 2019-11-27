@@ -1,34 +1,36 @@
 <template>
   <div>
+    <vue-headful :title="title" /> 
     <br />
     <div class="container">
       <div class="row">
         <div class="col-md-6">
           <form v-on:submit.prevent="editProfile()">
             <div class="form-group">
-              Nama Depan:
-              <input type="text" class="form-control" v-model="namaDepanVal" required />
+              Nama Depan
+              <input type="text" class="form-control" placeholder="Suprianto" v-model="txNamaDepanVal" required />
             </div>
             <div class="form-group">
-              Nama Belakang:
+              Nama Belakang
               <input
                 type="text"
                 class="form-control"
-                v-model="namaBelakangVal"
+                v-model="txNamaBelakangVal"
+                placeholder="D"
                 required
               />
             </div>
             <div class="form-group">
-              Telp:
-              <input type="text" class="form-control" v-model="telpVal" disabled required />
+              Telp
+              <input type="text" class="form-control" v-model="txTelpVal" placeholder="0812xxxx" disabled required />
             </div>
             <div class="form-group">
-              Email:
-              <input type="email" class="form-control" v-model="emailVal" disabled required />
+              Email
+              <input type="email" class="form-control" v-model="txEmailVal" placeholder="someone@mail.com" disabled required />
             </div>
             <div class="form-group">
-              Password:
-              <input type="password" class="form-control" v-model="passwordVal" required />
+              Password
+              <input type="password" class="form-control" placeholder="Input Password" v-model="txPasswordVal" required />
             </div>
             <button
               class="btn btn-primary"
@@ -71,16 +73,17 @@
           <div class="modal-body">
             <form v-on:submit.prevent>
               <div class="form-group">
-                Jumlah topup:
+                Jumlah topup
                 <input
                   type="number"
                   class="form-control"
-                  v-model="jumlahTopupVal"
+                  v-model="txJumlahTopupVal"
+                  placeholder="Input jumlah topup"
                   required
                 />
               </div>
               <div class="form-group">
-                Pilih metode pembayaran: {{ selectedMetodePembayaran }}
+                Pilih metode pembayaran {{ selectedMetodePembayaran }}
                 <br />
                 <div class="btn-group mt-1" role="group">
                   <button
@@ -98,7 +101,7 @@
                 </div>
               </div>
             </form>
-            <div class="alert alert-danger" v-if="jumlahTopupIsNull">Jumlah topup belum diisi</div>
+            <div class="alert alert-danger" v-if="txJumlahTopupIsNull">Jumlah topup belum diisi</div>
             <div
               class="alert alert-danger"
               v-if="selectedMetodePembayaranIsNull"
@@ -140,23 +143,34 @@
 <script>
 import Const from "../../helper/Const";
 import TextTools from "../../helper/TextTools";
+import VueHeadful from "vue-headful";
 export default {
+  components:{
+    VueHeadful
+  },
   data() {
     return {
+      title: Const.TITLE + "Profil",
       owner: {},
       saldo: "0",
       textTools: TextTools,
       const: Const,
-      namaDepanVal: "",
-      namaBelakangVal: "",
-      telpVal: "",
-      emailVal: "",
-      passwordVal: "",
+
+      // form profile
+      txNamaDepanVal: "",
+      txNamaBelakangVal: "",
+      txTelpVal: "",
+      txEmailVal: "",
+      txPasswordVal: "",
       btnPerbaruiIsDisabled: false,
+      
+      // form topup modal
       selectedMetodePembayaran: "",
-      jumlahTopupVal: "",
+      txJumlahTopupVal: "",
       selectedMetodePembayaranIsNull: false,
-      jumlahTopupIsNull: false,
+      txJumlahTopupIsNull: false,
+
+      // topup confirmation
       topupModalStatusInformation: ""
     };
   },
@@ -173,22 +187,22 @@ export default {
         )
         .then(res => {
           this.owner = res.data.data;
-          this.namaDepanVal = this.owner.nama_depan;
-          this.namaBelakangVal = this.owner.nama_belakang;
-          this.telpVal = this.owner.telp;
-          this.emailVal = this.owner.email;
-          this.passwordVal = this.owner.password;
+          this.txNamaDepanVal = this.owner.nama_depan;
+          this.txNamaBelakangVal = this.owner.nama_belakang;
+          this.txTelpVal = this.owner.telp;
+          this.txEmailVal = this.owner.email;
+          this.txPasswordVal = this.owner.password;
         });
     },
     editProfile() {
       this.btnPerbaruiIsDisabled = true;
 
       const body = {
-        nama_depan: this.namaDepanVal,
-        nama_belakang: this.namaBelakangVal,
-        telp: this.telpVal,
-        email: this.emailVal,
-        password: this.passwordVal
+        nama_depan: this.txNamaDepanVal,
+        nama_belakang: this.txNamaBelakangVal,
+        telp: this.txTelpVal,
+        email: this.txEmailVal,
+        password: this.txPasswordVal
       };
 
       axios
@@ -203,25 +217,25 @@ export default {
         });
     },
     topup() {
-      this.jumlahTopupIsNull = false;
+      this.txJumlahTopupIsNull = false;
       this.selectedMetodePembayaranIsNull = false;
 
-      if (this.jumlahTopupVal == "") {
-        this.jumlahTopupIsNull = true;
+      if (this.txJumlahTopupVal == "") {
+        this.txJumlahTopupIsNull = true;
       }
 
       if (this.selectedMetodePembayaran == "") {
         this.selectedMetodePembayaranIsNull = true;
       }
 
-      if (!this.jumlahTopupIsNull && !this.selectedMetodePembayaranIsNull) {
+      if (!this.txJumlahTopupIsNull && !this.selectedMetodePembayaranIsNull) {
         $("#topupModal").modal("hide");
         $("#topupModalStatus").modal();
 
         this.topupModalStatusInformation = "Memproses ...";
 
         const body = {
-          saldo: this.jumlahTopupVal
+          saldo: this.txJumlahTopupVal
         };
 
         axios

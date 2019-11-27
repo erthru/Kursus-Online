@@ -6,10 +6,10 @@
       <div class="row">
         <div class="col-md-8">
           <h4>{{kelasTitle}}</h4>
-          <small>Oleh: {{ owner.nama_depan + ' ' + owner.nama_belakang }}</small>
+          <small>Oleh {{ owner.nama_depan + ' ' + owner.nama_belakang }}</small>
           <p>{{deskripsi}}</p>
           <br />
-          <h4>Daftar Materi:</h4>
+          <h4>Daftar Materi</h4>
           <small v-if="materis.length == 0">Kelas ini belum memiliki materi.</small>
           <div
             v-for="(materi, index) in materis"

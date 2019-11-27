@@ -5,7 +5,7 @@
     <script src="{{ asset('js/app.js') }}" type="text/javascript" defer></script>
 </head>
 
-<body>
+<body class="bg-white">
     <div id="app">
     </div>
 </body>

@@ -17,6 +17,7 @@ import MainKelasSayaDetailComponent from './components/main/MainKelasSayaDetailC
 import MainCariKelasComponent from './components/main/MainCariKelasComponent';
 import MainKelasDetailComponent from './components/main/MainKelasDetailComponent';
 import MainProfileComponent from './components/main/MainProfileComponent';
+import MainKelasSayaMateriTambahComponent from './components/main/MainKelasSayaMateriTambahComponent';
 
 window.Vue = require('vue');
 Vue.use(VueRouter);
@@ -37,6 +38,10 @@ const routes = [
             {
                 path:'/kelas_saya/:id',
                 component: MainKelasSayaDetailComponent
+            },
+            {
+                path:'/kelas_saya/:id/materi/add',
+                component: MainKelasSayaMateriTambahComponent
             },
             {
                 path:"/cari",
