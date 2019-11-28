@@ -1850,15 +1850,18 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _helper_Const__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../helper/Const */ "./resources/js/helper/Const.js");
 //
 //
 //
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log("App Mounted");
+    console.log("Current Route: " + _helper_Const__WEBPACK_IMPORTED_MODULE_0__["default"].ROUTE_ROOT_URL);
   }
 });
 
