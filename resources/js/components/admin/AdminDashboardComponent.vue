@@ -1,6 +1,10 @@
 <template>
   <div>
     <vue-headful :title="title" />
+    <br />
+    <div class="container">
+      home
+    </div>
   </div>
 </template>
 

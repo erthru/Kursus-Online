@@ -30,7 +30,11 @@
               />
             </div>
             <div class="form-group">
-              <label>Tentukan Harga</label>
+              <label>
+                Tentukan Harga
+                <br>
+                * Terdapat potongan biaya administrasi sebesar {{biayaAdmin}}% dari harga jual kelas (Jika Berbayar)
+              </label>
               <input
                 type="number"
                 class="form-control"
@@ -97,6 +101,7 @@ export default {
       kelas: [],
       successMsg: "",
       successMsgIsHidden: true,
+      biayaAdmin: Const.BIAYA_ADMIN,
 
       // buat kelas element
       txNamaKelasVal: "",

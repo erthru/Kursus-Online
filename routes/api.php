@@ -51,5 +51,10 @@ Route::put('/pengguna/{id}/saldo/min','PenggunaController@minSaldo');
 Route::delete('/pengguna/{id}','PenggunaController@delete');
 
 // Admin
+Route::get('/admin/{id}','AdminController@show');
 Route::post('/admin','AdminController@store');
 Route::post('/admin/login','AdminController@login');
+Route::put('/admin/{id}','AdminController@update');
+
+// Perusahaan
+Route::put('/perusahaan/saldo/add', 'PerusahaanController@addSaldo');

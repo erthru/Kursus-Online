@@ -7,9 +7,20 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
+    public function show($id)
+    {
+        $rsp = [
+            'data' => Admin::find($id)
+        ];
+
+        return $rsp;
+    }
+
     public function store(Request $request)
     {
         $body = [
+            'nama_depan' => $request->input('nama_depan'),
+            'nama_belakang' => $request->input('nama_belakang'),
             'email' => $request->input('email'),
             'password' => $request->input('password'),
             'role' => $request->input('role')
@@ -17,6 +28,27 @@ class AdminController extends Controller
 
         $rsp = [
             'data' => Admin::create($body)
+        ];
+
+        return $rsp;
+    }
+
+    public function update($id, Request $request)
+    {
+        $admin = Admin::find($id);
+
+        $body = [
+            'nama_depan' => $request->input('nama_depan'),
+            'nama_belakang' => $request->input('nama_belakang'),
+            'email' => $request->input('email'),
+            'password' => $request->input('password'),
+            'role' => $request->input('role')
+        ];
+
+        $admin->update($body);
+
+        $rsp = [
+            'data' => $admin
         ];
 
         return $rsp;

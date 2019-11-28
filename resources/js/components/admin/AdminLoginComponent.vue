@@ -71,7 +71,7 @@ export default {
       axios.post(Const.API_BASE_URL + "admin/login", body).then(res => {
         if (res.data.data != null) {
           localStorage.setItem(Const.ADMIN_ID, res.data.data.id);
-          this.$router.push("/admin");
+          this.$router.go(0);
         } else {
           this.loginIsFail = true;
           this.btnLoginIsDisabled = false;

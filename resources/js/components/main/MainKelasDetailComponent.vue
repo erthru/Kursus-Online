@@ -5,16 +5,19 @@
     <div class="container">
       <div class="row">
         <div class="col-md-8">
-          <h4>{{kelasTitle}}</h4>
-          <small>Oleh {{ owner.nama_depan + ' ' + owner.nama_belakang }}</small>
-          <p>{{deskripsi}}</p>
+          <h4>{{ kelasTitle }}</h4>
+          <small>Oleh {{ owner.nama_depan + " " + owner.nama_belakang }}</small>
+          <p>{{ deskripsi }}</p>
           <br />
           <h4>Daftar Materi</h4>
           <small v-if="materis.length == 0">Kelas ini belum memiliki materi.</small>
-          <div
-            v-for="(materi, index) in materis"
-            :key="materi.id"
-          >{{ (index+=1) + '. ' + (materi.tipe == 'MATERI' ? materi.materi[0].judul : 'Kuis') }}</div>
+          <div v-for="(materi, index) in materis" :key="materi.id">
+            {{
+            (index += 1) +
+            ". " +
+            (materi.tipe == "MATERI" ? materi.materi[0].judul : "Kuis")
+            }}
+          </div>
         </div>
         <div class="col-md-4">
           <div class="pb-4 pt-4 pl-4 pr-4" style="background-color: #dcdde1">
@@ -24,7 +27,7 @@
               height="200px"
             />
             <h1 class="display-5 mt-3">
-              <strong>{{harga}}</strong>
+              <strong>{{ harga }}</strong>
             </h1>
             <small v-if="alreadyBuy">Anda telah berada di kelas ini</small>
             <button
@@ -95,7 +98,12 @@
             {{ keteranganPembelian }}
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal" v-on:click="reloadPage()">Tutup</button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+              v-on:click="reloadPage()"
+            >Tutup</button>
           </div>
         </div>
       </div>
@@ -205,48 +213,52 @@ export default {
           this.checkAlreadyBuy();
         });
     },
-    beli() {
+    async beli() {
       $("#beliInformationModal").modal();
 
       this.keteranganPembelian = "Memproses...";
 
       if (
         parseInt(TextTools.cleanRupiah(this.penggunaSaldo)) >=
-        parseInt(TextTools.cleanRupiah(this.harga == "GRATIS" ? "0" : this.harga))
+        parseInt(
+          TextTools.cleanRupiah(this.harga == "GRATIS" ? "0" : this.harga)
+        )
       ) {
         const body = {
           saldo: TextTools.cleanRupiah(this.harga)
         };
+        await axios.put(
+          Const.API_BASE_URL + "pengguna/" + this.penggunaId + "/saldo/min",
+          body
+        );
 
-        axios
-          .put(
-            Const.API_BASE_URL + "pengguna/" + this.penggunaId + "/saldo/min",
-            body
-          )
-          .then(res => {
-            const body2 = {
-              kelas_id: this.kelasId,
-              pengguna_id: this.penggunaId
-            };
+        const body2 = {
+          kelas_id: this.kelasId,
+          pengguna_id: this.penggunaId
+        };
+        await axios.post(Const.API_BASE_URL + "kelas_anggota", body2);
 
-            axios
-              .post(Const.API_BASE_URL + "kelas_anggota", body2)
-              .then(res => {
-                this.keteranganPembelian = "Pembelian berhasil, terima kasih";
-              })
-              .catch(err => {
-                this.keteranganPembelian = "Terjadi kesalah, coba lagi";
-              });
-          })
-          .catch(err => {
-            this.keteranganPembelian = "Terjadi kesalah, coba lagi";
-          });
+        const saldoToPenjualKotor = parseInt(TextTools.cleanRupiah(this.harga));
+        const saldoToAdmin = Const.BIAYA_ADMIN / 100 * saldoToPenjualKotor;
+        const saldoToPenjualBersih = saldoToPenjualKotor - saldoToAdmin;
+
+        const body3 = {
+          saldo: saldoToPenjualBersih
+        };
+        await axios.put(Const.API_BASE_URL + "pengguna/" + this.owner.id + "/saldo/add", body3);
+
+        const body4 = {
+          saldo: saldoToAdmin
+        };
+        await axios.put(Const.API_BASE_URL + "perusahaan/saldo/add", body4);
+
+        this.keteranganPembelian = "Pembelian berhasil, Terima kasih.";
       } else {
         this.keteranganPembelian =
           "Pembelian gagal, saldo tidak mencukupi. Silahkan topup saldo anda.";
       }
     },
-    reloadPage(){
+    reloadPage() {
       this.$router.go(0);
     }
   }

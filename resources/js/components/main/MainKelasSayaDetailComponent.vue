@@ -30,7 +30,11 @@
               />
             </div>
             <div class="form-group">
-              <label>Harga</label>
+              <label>
+                Tentukan Harga
+                <br />
+                * Terdapat potongan biaya administrasi sebesar {{biayaAdmin}}% dari harga jual kelas (Jika Berbayar)
+              </label>
               <input
                 type="number"
                 placeholder="0"

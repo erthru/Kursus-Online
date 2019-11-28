@@ -1873,13 +1873,70 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _helper_Const__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../helper/Const */ "./resources/js/helper/Const.js");
 //
 //
 //
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      admin: {}
+    };
+  },
+  mounted: function mounted() {
+    this.loadAdminDetail();
+  },
+  methods: {
+    loadAdminDetail: function loadAdminDetail() {
+      var _this = this;
+
+      axios.get(_helper_Const__WEBPACK_IMPORTED_MODULE_0__["default"].API_BASE_URL + "admin/" + localStorage.getItem(_helper_Const__WEBPACK_IMPORTED_MODULE_0__["default"].ADMIN_ID)).then(function (res) {
+        _this.admin = res.data.data;
+      });
+    },
+    logout: function logout() {
+      localStorage.removeItem(_helper_Const__WEBPACK_IMPORTED_MODULE_0__["default"].ADMIN_ID);
+      this.$router.go(0);
+    }
+  }
+});
 
 /***/ }),
 
@@ -1895,6 +1952,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _helper_Const__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../helper/Const */ "./resources/js/helper/Const.js");
 /* harmony import */ var vue_headful__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-headful */ "./node_modules/vue-headful/dist/vue-headful.js");
 /* harmony import */ var vue_headful__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_headful__WEBPACK_IMPORTED_MODULE_1__);
+//
+//
+//
+//
 //
 //
 //
@@ -2005,7 +2066,7 @@ __webpack_require__.r(__webpack_exports__);
         if (res.data.data != null) {
           localStorage.setItem(_helper_Const__WEBPACK_IMPORTED_MODULE_0__["default"].ADMIN_ID, res.data.data.id);
 
-          _this.$router.push("/admin");
+          _this.$router.go(0);
         } else {
           _this.loginIsFail = true;
           _this.btnLoginIsDisabled = false;
@@ -2548,10 +2609,26 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue_headful__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-headful */ "./node_modules/vue-headful/dist/vue-headful.js");
-/* harmony import */ var vue_headful__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_headful__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _helper_Const__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../helper/Const */ "./resources/js/helper/Const.js");
-/* harmony import */ var _helper_TextTools__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../helper/TextTools */ "./resources/js/helper/TextTools.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue_headful__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-headful */ "./node_modules/vue-headful/dist/vue-headful.js");
+/* harmony import */ var vue_headful__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_headful__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _helper_Const__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../helper/Const */ "./resources/js/helper/Const.js");
+/* harmony import */ var _helper_TextTools__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../helper/TextTools */ "./resources/js/helper/TextTools.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2662,11 +2739,11 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    VueHeadful: vue_headful__WEBPACK_IMPORTED_MODULE_0___default.a
+    VueHeadful: vue_headful__WEBPACK_IMPORTED_MODULE_1___default.a
   },
   data: function data() {
     return {
-      title: _helper_Const__WEBPACK_IMPORTED_MODULE_1__["default"].TITLE,
+      title: _helper_Const__WEBPACK_IMPORTED_MODULE_2__["default"].TITLE,
       pageAnggota: 0,
       owner: {},
       kelasTitle: "",
@@ -2682,7 +2759,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    this.penggunaId = localStorage.getItem(_helper_Const__WEBPACK_IMPORTED_MODULE_1__["default"].PENGGUNA_ID);
+    this.penggunaId = localStorage.getItem(_helper_Const__WEBPACK_IMPORTED_MODULE_2__["default"].PENGGUNA_ID);
     this.loadKelasDetail();
     this.loadKelasMateri();
     this.loadPenggunaDetail();
@@ -2691,7 +2768,7 @@ __webpack_require__.r(__webpack_exports__);
     checkAlreadyBuy: function checkAlreadyBuy() {
       var _this = this;
 
-      axios.get(_helper_Const__WEBPACK_IMPORTED_MODULE_1__["default"].API_BASE_URL + "kelas_anggota/check/anggota?pengguna_id=" + this.penggunaId + "&kelas_id=" + this.kelasId).then(function (res) {
+      axios.get(_helper_Const__WEBPACK_IMPORTED_MODULE_2__["default"].API_BASE_URL + "kelas_anggota/check/anggota?pengguna_id=" + this.penggunaId + "&kelas_id=" + this.kelasId).then(function (res) {
         if (res.data.data != null) {
           _this.alreadyBuy = true;
         }
@@ -2700,12 +2777,12 @@ __webpack_require__.r(__webpack_exports__);
     loadKelasDetail: function loadKelasDetail() {
       var _this2 = this;
 
-      axios.get(_helper_Const__WEBPACK_IMPORTED_MODULE_1__["default"].API_BASE_URL + "kelas/" + this.$route.params.id).then(function (res) {
+      axios.get(_helper_Const__WEBPACK_IMPORTED_MODULE_2__["default"].API_BASE_URL + "kelas/" + this.$route.params.id).then(function (res) {
         _this2.kelasTitle = res.data.data.nama;
         _this2.title += _this2.kelasTitle;
         _this2.owner = res.data.data.pengguna;
         _this2.deskripsi = res.data.data.deskripsi;
-        _this2.harga = "Rp. " + _helper_TextTools__WEBPACK_IMPORTED_MODULE_2__["default"].getRupiah(res.data.data.harga);
+        _this2.harga = "Rp. " + _helper_TextTools__WEBPACK_IMPORTED_MODULE_3__["default"].getRupiah(res.data.data.harga);
         _this2.kelasId = res.data.data.id;
 
         if (_this2.harga == "Rp. 0") {
@@ -2716,7 +2793,7 @@ __webpack_require__.r(__webpack_exports__);
     loadKelasMateri: function loadKelasMateri(mod) {
       var _this3 = this;
 
-      axios.get(_helper_Const__WEBPACK_IMPORTED_MODULE_1__["default"].API_BASE_URL + "kelas/" + this.$route.params.id).then(function (res) {
+      axios.get(_helper_Const__WEBPACK_IMPORTED_MODULE_2__["default"].API_BASE_URL + "kelas/" + this.$route.params.id).then(function (res) {
         for (var i = 0; i < res.data.data.materi.length; i++) {
           _this3.materis.push(res.data.data.materi[i]);
         }
@@ -2731,7 +2808,7 @@ __webpack_require__.r(__webpack_exports__);
         this.pageAnggota -= 1;
       }
 
-      axios.get(_helper_Const__WEBPACK_IMPORTED_MODULE_1__["default"].API_BASE_URL + "kelas/" + this.$route.params.id + "?page=" + this.pageAnggota).then(function (res) {
+      axios.get(_helper_Const__WEBPACK_IMPORTED_MODULE_2__["default"].API_BASE_URL + "kelas/" + this.$route.params.id + "?page=" + this.pageAnggota).then(function (res) {
         for (var i = 0; i < res.data.data.materi.length; i++) {
           _this4.anggotas.push(res.data.data.kelas_anggota[i]);
         }
@@ -2740,39 +2817,82 @@ __webpack_require__.r(__webpack_exports__);
     loadPenggunaDetail: function loadPenggunaDetail() {
       var _this5 = this;
 
-      axios.get(_helper_Const__WEBPACK_IMPORTED_MODULE_1__["default"].API_BASE_URL + "pengguna/" + this.penggunaId).then(function (res) {
-        _this5.penggunaSaldo = _helper_TextTools__WEBPACK_IMPORTED_MODULE_2__["default"].getRupiah(res.data.data.saldo);
+      axios.get(_helper_Const__WEBPACK_IMPORTED_MODULE_2__["default"].API_BASE_URL + "pengguna/" + this.penggunaId).then(function (res) {
+        _this5.penggunaSaldo = _helper_TextTools__WEBPACK_IMPORTED_MODULE_3__["default"].getRupiah(res.data.data.saldo);
 
         _this5.checkAlreadyBuy();
       });
     },
-    beli: function beli() {
-      var _this6 = this;
+    beli: function () {
+      var _beli = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var body, body2, saldoToPenjualKotor, saldoToAdmin, saldoToPenjualBersih, body3, body4;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                $("#beliInformationModal").modal();
+                this.keteranganPembelian = "Memproses...";
 
-      $("#beliInformationModal").modal();
-      this.keteranganPembelian = "Memproses...";
+                if (!(parseInt(_helper_TextTools__WEBPACK_IMPORTED_MODULE_3__["default"].cleanRupiah(this.penggunaSaldo)) >= parseInt(_helper_TextTools__WEBPACK_IMPORTED_MODULE_3__["default"].cleanRupiah(this.harga == "GRATIS" ? "0" : this.harga)))) {
+                  _context.next = 21;
+                  break;
+                }
 
-      if (parseInt(_helper_TextTools__WEBPACK_IMPORTED_MODULE_2__["default"].cleanRupiah(this.penggunaSaldo)) >= parseInt(_helper_TextTools__WEBPACK_IMPORTED_MODULE_2__["default"].cleanRupiah(this.harga == "GRATIS" ? "0" : this.harga))) {
-        var body = {
-          saldo: _helper_TextTools__WEBPACK_IMPORTED_MODULE_2__["default"].cleanRupiah(this.harga)
-        };
-        axios.put(_helper_Const__WEBPACK_IMPORTED_MODULE_1__["default"].API_BASE_URL + "pengguna/" + this.penggunaId + "/saldo/min", body).then(function (res) {
-          var body2 = {
-            kelas_id: _this6.kelasId,
-            pengguna_id: _this6.penggunaId
-          };
-          axios.post(_helper_Const__WEBPACK_IMPORTED_MODULE_1__["default"].API_BASE_URL + "kelas_anggota", body2).then(function (res) {
-            _this6.keteranganPembelian = "Pembelian berhasil, terima kasih";
-          })["catch"](function (err) {
-            _this6.keteranganPembelian = "Terjadi kesalah, coba lagi";
-          });
-        })["catch"](function (err) {
-          _this6.keteranganPembelian = "Terjadi kesalah, coba lagi";
-        });
-      } else {
-        this.keteranganPembelian = "Pembelian gagal, saldo tidak mencukupi. Silahkan topup saldo anda.";
+                body = {
+                  saldo: _helper_TextTools__WEBPACK_IMPORTED_MODULE_3__["default"].cleanRupiah(this.harga)
+                };
+                _context.next = 6;
+                return axios.put(_helper_Const__WEBPACK_IMPORTED_MODULE_2__["default"].API_BASE_URL + "pengguna/" + this.penggunaId + "/saldo/min", body);
+
+              case 6:
+                body2 = {
+                  kelas_id: this.kelasId,
+                  pengguna_id: this.penggunaId
+                };
+                _context.next = 9;
+                return axios.post(_helper_Const__WEBPACK_IMPORTED_MODULE_2__["default"].API_BASE_URL + "kelas_anggota", body2);
+
+              case 9:
+                saldoToPenjualKotor = parseInt(_helper_TextTools__WEBPACK_IMPORTED_MODULE_3__["default"].cleanRupiah(this.harga));
+                saldoToAdmin = _helper_Const__WEBPACK_IMPORTED_MODULE_2__["default"].BIAYA_ADMIN / 100 * saldoToPenjualKotor;
+                saldoToPenjualBersih = saldoToPenjualKotor - saldoToAdmin;
+                body3 = {
+                  saldo: saldoToPenjualBersih
+                };
+                _context.next = 15;
+                return axios.put(_helper_Const__WEBPACK_IMPORTED_MODULE_2__["default"].API_BASE_URL + "pengguna/" + this.owner.id + "/saldo/add", body3);
+
+              case 15:
+                body4 = {
+                  saldo: saldoToAdmin
+                };
+                _context.next = 18;
+                return axios.put(_helper_Const__WEBPACK_IMPORTED_MODULE_2__["default"].API_BASE_URL + "perusahaan/saldo/add", body4);
+
+              case 18:
+                this.keteranganPembelian = "Pembelian berhasil, Terima kasih.";
+                _context.next = 22;
+                break;
+
+              case 21:
+                this.keteranganPembelian = "Pembelian gagal, saldo tidak mencukupi. Silahkan topup saldo anda.";
+
+              case 22:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function beli() {
+        return _beli.apply(this, arguments);
       }
-    },
+
+      return beli;
+    }(),
     reloadPage: function reloadPage() {
       this.$router.go(0);
     }
@@ -3184,6 +3304,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3207,6 +3331,7 @@ __webpack_require__.r(__webpack_exports__);
       kelas: [],
       successMsg: "",
       successMsgIsHidden: true,
+      biayaAdmin: _helper_Const__WEBPACK_IMPORTED_MODULE_0__["default"].BIAYA_ADMIN,
       // buat kelas element
       txNamaKelasVal: "",
       txDeskripsiVal: "",
@@ -3290,6 +3415,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_headful__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-headful */ "./node_modules/vue-headful/dist/vue-headful.js");
 /* harmony import */ var vue_headful__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_headful__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _helper_Const__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../helper/Const */ "./resources/js/helper/Const.js");
+//
+//
+//
+//
 //
 //
 //
@@ -40372,9 +40501,112 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_c("router-view")], 1)
+  return _c(
+    "div",
+    [
+      _c(
+        "nav",
+        { staticClass: "navbar navbar-expand-lg navbar-dark bg-primary" },
+        [
+          _c(
+            "router-link",
+            { staticClass: "navbar-brand", attrs: { to: "/admin" } },
+            [_vm._v("Kursus Online | Admin")]
+          ),
+          _vm._v(" "),
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "collapse navbar-collapse",
+              attrs: { id: "navbarSupportedContent" }
+            },
+            [
+              _c("ul", { staticClass: "navbar-nav mr-auto" }, [
+                _c(
+                  "li",
+                  { staticClass: "nav-item active" },
+                  [
+                    _c(
+                      "router-link",
+                      { staticClass: "nav-link", attrs: { to: "/admin" } },
+                      [
+                        _vm._v("\n            Home\n            "),
+                        _c("span", { staticClass: "sr-only" }, [
+                          _vm._v("(current)")
+                        ])
+                      ]
+                    )
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _vm.admin != undefined
+                ? _c("ul", { staticClass: "navbar-nav ml-auto" }, [
+                    _c("li", { staticClass: "nav-item active" }, [
+                      _c("span", { staticClass: "nav-link" }, [
+                        _vm._v(
+                          "Logged As, " +
+                            _vm._s(
+                              _vm.admin.nama_depan +
+                                " " +
+                                _vm.admin.nama_belakang
+                            )
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item active" }, [
+                      _c(
+                        "span",
+                        {
+                          staticClass: "nav-link",
+                          on: {
+                            click: function($event) {
+                              return _vm.logout()
+                            }
+                          }
+                        },
+                        [_vm._v("Logout")]
+                      )
+                    ])
+                  ])
+                : _vm._e()
+            ]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("router-view")
+    ],
+    1
+  )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "navbar-toggler",
+        attrs: {
+          type: "button",
+          "data-toggle": "collapse",
+          "data-target": "#navbarSupportedContent",
+          "aria-controls": "navbarSupportedContent",
+          "aria-expanded": "false",
+          "aria-label": "Toggle navigation"
+        }
+      },
+      [_c("span", { staticClass: "navbar-toggler-icon" })]
+    )
+  }
+]
 render._withStripped = true
 
 
@@ -40396,7 +40628,17 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_c("vue-headful", { attrs: { title: _vm.title } })], 1)
+  return _c(
+    "div",
+    [
+      _c("vue-headful", { attrs: { title: _vm.title } }),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c("div", { staticClass: "container" }, [_vm._v("\n    home\n  ")])
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -41423,13 +41665,15 @@ var render = function() {
               _vm._l(_vm.materis, function(materi, index) {
                 return _c("div", { key: materi.id }, [
                   _vm._v(
-                    _vm._s(
-                      (index += 1) +
-                        ". " +
-                        (materi.tipe == "MATERI"
-                          ? materi.materi[0].judul
-                          : "Kuis")
-                    )
+                    "\n          " +
+                      _vm._s(
+                        (index += 1) +
+                          ". " +
+                          (materi.tipe == "MATERI"
+                            ? materi.materi[0].judul
+                            : "Kuis")
+                      ) +
+                      "\n        "
                   )
                 ])
               })
@@ -42177,7 +42421,15 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
-                  _c("label", [_vm._v("Tentukan Harga")]),
+                  _c("label", [
+                    _vm._v("\n              Tentukan Harga\n              "),
+                    _c("br"),
+                    _vm._v(
+                      "\n              * Terdapat potongan biaya administrasi sebesar " +
+                        _vm._s(_vm.biayaAdmin) +
+                        "% dari harga jual kelas (Jika Berbayar)\n            "
+                    )
+                  ]),
                   _vm._v(" "),
                   _c("input", {
                     directives: [
@@ -42417,7 +42669,15 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
-                    _c("label", [_vm._v("Harga")]),
+                    _c("label", [
+                      _vm._v("\n              Tentukan Harga\n              "),
+                      _c("br"),
+                      _vm._v(
+                        "\n              * Terdapat potongan biaya administrasi sebesar " +
+                          _vm._s(_vm.biayaAdmin) +
+                          "% dari harga jual kelas (Jika Berbayar)\n            "
+                      )
+                    ]),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -59376,14 +59636,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!*******************************************************************!*\
   !*** ./resources/js/components/main/MainKelasDetailComponent.vue ***!
   \*******************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _MainKelasDetailComponent_vue_vue_type_template_id_e35dd348___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MainKelasDetailComponent.vue?vue&type=template&id=e35dd348& */ "./resources/js/components/main/MainKelasDetailComponent.vue?vue&type=template&id=e35dd348&");
 /* harmony import */ var _MainKelasDetailComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MainKelasDetailComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/main/MainKelasDetailComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _MainKelasDetailComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _MainKelasDetailComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -59413,7 +59674,7 @@ component.options.__file = "resources/js/components/main/MainKelasDetailComponen
 /*!********************************************************************************************!*\
   !*** ./resources/js/components/main/MainKelasDetailComponent.vue?vue&type=script&lang=js& ***!
   \********************************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -60006,7 +60267,8 @@ __webpack_require__.r(__webpack_exports__);
   TITLE: 'Kursus Online | ',
   API_BASE_URL: 'http://localhost:8000/api/',
   PENGGUNA_ID: 'pengguna_id',
-  ADMIN_ID: 'admin_id'
+  ADMIN_ID: 'admin_id',
+  BIAYA_ADMIN: 3
 });
 
 /***/ }),
