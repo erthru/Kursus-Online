@@ -129,7 +129,7 @@ export default {
     VueHeadful
   },
   mounted() {
-    if (localStorage.getItem(Const.PENGAJAR_ID) != null) {
+    if (localStorage.getItem(Const.PENGGUNA_ID) != null) {
       this.$router.push("/");
     }
   },
@@ -168,7 +168,7 @@ export default {
       axios.post(Const.API_BASE_URL + "pengguna/login", params).then(res => {
         if (res.data.data != null) {
           localStorage.setItem(Const.PENGGUNA_ID, res.data.data.id);
-          this.$router.push("/");
+          this.$router.go(0);
         } else {
           this.errorMessage =
             "Login gagal, email / password salah. Periksa kembali";
@@ -198,7 +198,7 @@ export default {
           .post(Const.API_BASE_URL + "pengguna", params)
           .then(res => {
             localStorage.setItem(Const.PENGGUNA_ID, res.data.data.id);
-            this.$router.push("/");
+            this.$router.go(0);
           })
           .catch(err => {
             if (err.response.data.message.includes("Duplicate entry")) {

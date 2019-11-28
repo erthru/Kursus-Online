@@ -5,13 +5,10 @@ import VueRouter from 'vue-router';
 // main
 import AppComponent from './components/AppComponent';
 
-// default a.k.a non child
-import BergabungComponent from './components/default/BergabungComponent';
-import LogoutComponent from './components/default/LogoutComponent';
-
 // main
 import MainComponent from './components/main/MainComponent';
 import MainHomeComponent from './components/main/MainHomeComponent';
+import MainBergabungComponent from './components/main/MainBergabungComponent';
 import MainKelasSayaComponent from './components/main/MainKelasSayaComponent';
 import MainKelasSayaDetailComponent from './components/main/MainKelasSayaDetailComponent';
 import MainKelasSayaMateriTambahComponent from './components/main/MainKelasSayaMateriTambahComponent';
@@ -22,6 +19,11 @@ import MainKelasDibeliDetailMateriComponent from './components/main/MainKelasDib
 import MainCariKelasComponent from './components/main/MainCariKelasComponent';
 import MainKelasDetailComponent from './components/main/MainKelasDetailComponent';
 import MainProfileComponent from './components/main/MainProfileComponent';
+
+// admin
+import AdminComponent from "./components/admin/AdminComponent";
+import AdminDashboardComponent from "./components/admin/AdminDashboardComponent";
+import AdminLoginComponent from "./components/admin/AdminLoginComponent";
 
 window.Vue = require('vue');
 Vue.use(VueRouter);
@@ -34,6 +36,10 @@ const routes = [
             {
                 path:'/',
                 component: MainHomeComponent
+            },
+            {
+                path: '/bergabung',
+                component: MainBergabungComponent
             },
             {
                 path:'/kelas_saya',
@@ -78,12 +84,18 @@ const routes = [
         ]
     },
     {
-        path: '/bergabung',
-        component: BergabungComponent
-    },
-    {
-        path: '/logout',
-        component: LogoutComponent
+        path: '/admin',
+        component: AdminComponent,
+        children: [
+            {
+                path: '/',
+                component: AdminDashboardComponent
+            },
+            {
+                path: '/login',
+                component: AdminLoginComponent
+            }
+        ]
     }
 ];
 

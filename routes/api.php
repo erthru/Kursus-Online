@@ -49,3 +49,7 @@ Route::put('/pengguna/{id}','PenggunaController@update');
 Route::put('/pengguna/{id}/saldo/add','PenggunaController@addSaldo');
 Route::put('/pengguna/{id}/saldo/min','PenggunaController@minSaldo');
 Route::delete('/pengguna/{id}','PenggunaController@delete');
+
+// Admin
+Route::post('/admin','AdminController@store');
+Route::post('/admin/login','AdminController@login');

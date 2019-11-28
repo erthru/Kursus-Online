@@ -54,7 +54,7 @@
             <router-link class="nav-link" to="/profile">Hello, {{userNamaLengkap}}</router-link>
           </li>
           <li class="nav-item active">
-            <router-link class="nav-link" to="/logout">Logout</router-link>
+            <router-link class="nav-link bg-transparent" to="#"><span v-on:click="logout()">Logout</span></router-link>
           </li>
         </ul>
       </div>
@@ -92,6 +92,10 @@ export default {
           this.userNamaLengkap =
             res.data.data.nama_depan + " " + res.data.data.nama_belakang;
         });
+    },
+    logout() {
+      localStorage.removeItem(Const.PENGGUNA_ID);
+      this.$router.go(0);
     }
   }
 };
