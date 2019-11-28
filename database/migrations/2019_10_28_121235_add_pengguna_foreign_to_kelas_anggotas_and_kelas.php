@@ -13,6 +13,8 @@ class AddPenggunaForeignToKelasAnggotasAndKelas extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('kelas_anggotas');
+        
         Schema::create('kelas_anggotas', function (Blueprint $table) {
             $table->bigIncrements('id')->unsigned();
             $table->unsignedBigInteger('kelas_id');
