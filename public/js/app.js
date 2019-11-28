@@ -58924,23 +58924,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 /* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_bootstrap__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
-/* harmony import */ var _components_AppComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/AppComponent */ "./resources/js/components/AppComponent.vue");
-/* harmony import */ var _components_main_MainComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/main/MainComponent */ "./resources/js/components/main/MainComponent.vue");
-/* harmony import */ var _components_main_MainHomeComponent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/main/MainHomeComponent */ "./resources/js/components/main/MainHomeComponent.vue");
-/* harmony import */ var _components_main_MainBergabungComponent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/main/MainBergabungComponent */ "./resources/js/components/main/MainBergabungComponent.vue");
-/* harmony import */ var _components_main_MainKelasSayaComponent__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/main/MainKelasSayaComponent */ "./resources/js/components/main/MainKelasSayaComponent.vue");
-/* harmony import */ var _components_main_MainKelasSayaDetailComponent__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/main/MainKelasSayaDetailComponent */ "./resources/js/components/main/MainKelasSayaDetailComponent.vue");
-/* harmony import */ var _components_main_MainKelasSayaMateriTambahComponent__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/main/MainKelasSayaMateriTambahComponent */ "./resources/js/components/main/MainKelasSayaMateriTambahComponent.vue");
-/* harmony import */ var _components_main_MainKelasSayaMateriDetailComponent__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/main/MainKelasSayaMateriDetailComponent */ "./resources/js/components/main/MainKelasSayaMateriDetailComponent.vue");
-/* harmony import */ var _components_main_MainKelasDibeliComponent__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/main/MainKelasDibeliComponent */ "./resources/js/components/main/MainKelasDibeliComponent.vue");
-/* harmony import */ var _components_main_MainKelasDibeliDetailComponent__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/main/MainKelasDibeliDetailComponent */ "./resources/js/components/main/MainKelasDibeliDetailComponent.vue");
-/* harmony import */ var _components_main_MainKelasDibeliDetailMateriComponent__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/main/MainKelasDibeliDetailMateriComponent */ "./resources/js/components/main/MainKelasDibeliDetailMateriComponent.vue");
-/* harmony import */ var _components_main_MainCariKelasComponent__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/main/MainCariKelasComponent */ "./resources/js/components/main/MainCariKelasComponent.vue");
-/* harmony import */ var _components_main_MainKelasDetailComponent__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/main/MainKelasDetailComponent */ "./resources/js/components/main/MainKelasDetailComponent.vue");
-/* harmony import */ var _components_main_MainProfileComponent__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/main/MainProfileComponent */ "./resources/js/components/main/MainProfileComponent.vue");
-/* harmony import */ var _components_admin_AdminComponent__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/admin/AdminComponent */ "./resources/js/components/admin/AdminComponent.vue");
-/* harmony import */ var _components_admin_AdminDashboardComponent__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/admin/AdminDashboardComponent */ "./resources/js/components/admin/AdminDashboardComponent.vue");
-/* harmony import */ var _components_admin_AdminLoginComponent__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/admin/AdminLoginComponent */ "./resources/js/components/admin/AdminLoginComponent.vue");
+/* harmony import */ var _helper_Const__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./helper/Const */ "./resources/js/helper/Const.js");
+/* harmony import */ var _components_AppComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/AppComponent */ "./resources/js/components/AppComponent.vue");
+/* harmony import */ var _components_main_MainComponent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/main/MainComponent */ "./resources/js/components/main/MainComponent.vue");
+/* harmony import */ var _components_main_MainHomeComponent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/main/MainHomeComponent */ "./resources/js/components/main/MainHomeComponent.vue");
+/* harmony import */ var _components_main_MainBergabungComponent__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/main/MainBergabungComponent */ "./resources/js/components/main/MainBergabungComponent.vue");
+/* harmony import */ var _components_main_MainKelasSayaComponent__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/main/MainKelasSayaComponent */ "./resources/js/components/main/MainKelasSayaComponent.vue");
+/* harmony import */ var _components_main_MainKelasSayaDetailComponent__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/main/MainKelasSayaDetailComponent */ "./resources/js/components/main/MainKelasSayaDetailComponent.vue");
+/* harmony import */ var _components_main_MainKelasSayaMateriTambahComponent__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/main/MainKelasSayaMateriTambahComponent */ "./resources/js/components/main/MainKelasSayaMateriTambahComponent.vue");
+/* harmony import */ var _components_main_MainKelasSayaMateriDetailComponent__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/main/MainKelasSayaMateriDetailComponent */ "./resources/js/components/main/MainKelasSayaMateriDetailComponent.vue");
+/* harmony import */ var _components_main_MainKelasDibeliComponent__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/main/MainKelasDibeliComponent */ "./resources/js/components/main/MainKelasDibeliComponent.vue");
+/* harmony import */ var _components_main_MainKelasDibeliDetailComponent__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/main/MainKelasDibeliDetailComponent */ "./resources/js/components/main/MainKelasDibeliDetailComponent.vue");
+/* harmony import */ var _components_main_MainKelasDibeliDetailMateriComponent__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/main/MainKelasDibeliDetailMateriComponent */ "./resources/js/components/main/MainKelasDibeliDetailMateriComponent.vue");
+/* harmony import */ var _components_main_MainCariKelasComponent__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/main/MainCariKelasComponent */ "./resources/js/components/main/MainCariKelasComponent.vue");
+/* harmony import */ var _components_main_MainKelasDetailComponent__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/main/MainKelasDetailComponent */ "./resources/js/components/main/MainKelasDetailComponent.vue");
+/* harmony import */ var _components_main_MainProfileComponent__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/main/MainProfileComponent */ "./resources/js/components/main/MainProfileComponent.vue");
+/* harmony import */ var _components_admin_AdminComponent__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/admin/AdminComponent */ "./resources/js/components/admin/AdminComponent.vue");
+/* harmony import */ var _components_admin_AdminDashboardComponent__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/admin/AdminDashboardComponent */ "./resources/js/components/admin/AdminDashboardComponent.vue");
+/* harmony import */ var _components_admin_AdminLoginComponent__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/admin/AdminLoginComponent */ "./resources/js/components/admin/AdminLoginComponent.vue");
+
 
  // component
 // main
@@ -58968,59 +58970,59 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
 var routes = [{
   path: '/',
-  component: _components_main_MainComponent__WEBPACK_IMPORTED_MODULE_3__["default"],
+  component: _components_main_MainComponent__WEBPACK_IMPORTED_MODULE_4__["default"],
   children: [{
     path: '',
-    component: _components_main_MainHomeComponent__WEBPACK_IMPORTED_MODULE_4__["default"]
+    component: _components_main_MainHomeComponent__WEBPACK_IMPORTED_MODULE_5__["default"]
   }, {
     path: 'bergabung',
-    component: _components_main_MainBergabungComponent__WEBPACK_IMPORTED_MODULE_5__["default"]
+    component: _components_main_MainBergabungComponent__WEBPACK_IMPORTED_MODULE_6__["default"]
   }, {
     path: 'kelas_saya',
-    component: _components_main_MainKelasSayaComponent__WEBPACK_IMPORTED_MODULE_6__["default"]
+    component: _components_main_MainKelasSayaComponent__WEBPACK_IMPORTED_MODULE_7__["default"]
   }, {
     path: 'kelas_saya/:id',
-    component: _components_main_MainKelasSayaDetailComponent__WEBPACK_IMPORTED_MODULE_7__["default"]
+    component: _components_main_MainKelasSayaDetailComponent__WEBPACK_IMPORTED_MODULE_8__["default"]
   }, {
     path: 'kelas_dibeli',
-    component: _components_main_MainKelasDibeliComponent__WEBPACK_IMPORTED_MODULE_10__["default"]
+    component: _components_main_MainKelasDibeliComponent__WEBPACK_IMPORTED_MODULE_11__["default"]
   }, {
     path: 'kelas_dibeli/:id',
-    component: _components_main_MainKelasDibeliDetailComponent__WEBPACK_IMPORTED_MODULE_11__["default"]
+    component: _components_main_MainKelasDibeliDetailComponent__WEBPACK_IMPORTED_MODULE_12__["default"]
   }, {
     path: 'kelas_dibeli/:kelas_id/materi/:materi_id',
-    component: _components_main_MainKelasDibeliDetailMateriComponent__WEBPACK_IMPORTED_MODULE_12__["default"]
+    component: _components_main_MainKelasDibeliDetailMateriComponent__WEBPACK_IMPORTED_MODULE_13__["default"]
   }, {
     path: 'kelas_saya/:id/materi/add',
-    component: _components_main_MainKelasSayaMateriTambahComponent__WEBPACK_IMPORTED_MODULE_8__["default"]
+    component: _components_main_MainKelasSayaMateriTambahComponent__WEBPACK_IMPORTED_MODULE_9__["default"]
   }, {
     path: 'kelas_saya/:kelas_id/materi/:materi_id',
-    component: _components_main_MainKelasSayaMateriDetailComponent__WEBPACK_IMPORTED_MODULE_9__["default"]
+    component: _components_main_MainKelasSayaMateriDetailComponent__WEBPACK_IMPORTED_MODULE_10__["default"]
   }, {
     path: "cari",
-    component: _components_main_MainCariKelasComponent__WEBPACK_IMPORTED_MODULE_13__["default"]
+    component: _components_main_MainCariKelasComponent__WEBPACK_IMPORTED_MODULE_14__["default"]
   }, {
     path: "kelas/:id",
-    component: _components_main_MainKelasDetailComponent__WEBPACK_IMPORTED_MODULE_14__["default"]
+    component: _components_main_MainKelasDetailComponent__WEBPACK_IMPORTED_MODULE_15__["default"]
   }, {
     path: "profile",
-    component: _components_main_MainProfileComponent__WEBPACK_IMPORTED_MODULE_15__["default"]
+    component: _components_main_MainProfileComponent__WEBPACK_IMPORTED_MODULE_16__["default"]
   }]
 }, {
   path: '/admin',
-  component: _components_admin_AdminComponent__WEBPACK_IMPORTED_MODULE_16__["default"],
+  component: _components_admin_AdminComponent__WEBPACK_IMPORTED_MODULE_17__["default"],
   children: [{
     path: '',
-    component: _components_admin_AdminDashboardComponent__WEBPACK_IMPORTED_MODULE_17__["default"]
+    component: _components_admin_AdminDashboardComponent__WEBPACK_IMPORTED_MODULE_18__["default"]
   }, {
     path: 'login',
-    component: _components_admin_AdminLoginComponent__WEBPACK_IMPORTED_MODULE_18__["default"]
+    component: _components_admin_AdminLoginComponent__WEBPACK_IMPORTED_MODULE_19__["default"]
   }]
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: 'history',
   routes: routes,
-  base: '/',
+  base: _helper_Const__WEBPACK_IMPORTED_MODULE_2__["default"].ROUTE_ROOT_URL,
   scrollBehavior: function scrollBehavior(to) {
     if (to.hash) {
       return {
@@ -59031,7 +59033,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 });
 new Vue(Vue.util.extend({
   router: router
-}, _components_AppComponent__WEBPACK_IMPORTED_MODULE_2__["default"])).$mount('#app');
+}, _components_AppComponent__WEBPACK_IMPORTED_MODULE_3__["default"])).$mount('#app');
 
 /***/ }),
 
@@ -60265,6 +60267,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   TITLE: 'Kursus Online | ',
+  ROUTE_ROOT_URL: '/',
   API_BASE_URL: 'http://localhost:8000/api/',
   PENGGUNA_ID: 'pengguna_id',
   ADMIN_ID: 'admin_id',

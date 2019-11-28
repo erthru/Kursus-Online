@@ -1,5 +1,6 @@
 import './bootstrap';
 import VueRouter from 'vue-router';
+import Const from './helper/Const';
 
 // component
 // main
@@ -102,7 +103,7 @@ const routes = [
 const router = new VueRouter({
     mode: 'history',
     routes: routes,
-    base: '/',
+    base: Const.ROUTE_ROOT_URL,
     scrollBehavior: function (to) {
         if (to.hash) {
             return {
