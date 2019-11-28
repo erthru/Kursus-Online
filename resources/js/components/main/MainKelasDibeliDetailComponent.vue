@@ -26,7 +26,7 @@
       <div
         v-for="(materi, index) in materis"
         :key="materi.id"
-      ><router-link class="text-primary" :to="'/kelas_dibeli/' + kelasDibeliId + '/materi/' + materi.id">{{(index += 1) + '. ' + (materi.tipe == 'KUIS' ? "Kuis" : materi.materi[0].judul)}}</router-link></div>
+      ><router-link class="text-primary" :to="'/kelas_dibeli/' + kelasId + '/materi/' + materi.id">{{(index += 1) + '. ' + (materi.tipe == 'KUIS' ? "Kuis" : materi.materi[0].judul)}}</router-link></div>
     </div>
   </div>
 </template>
@@ -44,7 +44,7 @@ export default {
       kelas: {},
       materis: [],
       anggotaIsExist: true,
-      kelasDibeliId: this.$route.params.id
+      kelasId: this.$route.params.id
     };
   },
   mounted() {

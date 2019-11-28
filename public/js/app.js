@@ -2818,7 +2818,7 @@ __webpack_require__.r(__webpack_exports__);
       kelas: {},
       materis: [],
       anggotaIsExist: true,
-      kelasDibeliId: this.$route.params.id
+      kelasId: this.$route.params.id
     };
   },
   mounted: function mounted() {
@@ -2851,6 +2851,108 @@ __webpack_require__.r(__webpack_exports__);
           _this.$router.push("/");
         }
       });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/main/MainKelasDibeliDetailMateriComponent.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/main/MainKelasDibeliDetailMateriComponent.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue_headful__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-headful */ "./node_modules/vue-headful/dist/vue-headful.js");
+/* harmony import */ var vue_headful__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_headful__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _helper_Const__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../helper/Const */ "./resources/js/helper/Const.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    VueHeadful: vue_headful__WEBPACK_IMPORTED_MODULE_0___default.a
+  },
+  data: function data() {
+    return {
+      title: _helper_Const__WEBPACK_IMPORTED_MODULE_1__["default"].TITLE + "Kelas Dibeli Lihat Materi",
+      kelas: {},
+      materi: {},
+      kuis: {},
+      // form kuis
+      txJawabanVal: "",
+      isAnswer: false,
+      correctAnswer: false
+    };
+  },
+  mounted: function mounted() {
+    this.loadData();
+  },
+  methods: {
+    loadData: function loadData() {
+      var _this = this;
+
+      axios.get(_helper_Const__WEBPACK_IMPORTED_MODULE_1__["default"].API_BASE_URL + "materi/" + this.$route.params.materi_id).then(function (res) {
+        _this.kelas = res.data.data.kelas;
+        _this.materi = res.data.data.materi[0];
+        _this.kuis = res.data.data.kuis[0];
+        console.log(_this.kuis);
+      });
+    },
+    jawab: function jawab() {
+      this.isAnswer = true;
+
+      if (this.kuis.jawaban == this.txJawabanVal) {
+        this.correctAnswer = true;
+      }
     }
   }
 });
@@ -41454,10 +41556,7 @@ var render = function() {
                     staticClass: "text-primary",
                     attrs: {
                       to:
-                        "/kelas_dibeli/" +
-                        _vm.kelasDibeliId +
-                        "/materi/" +
-                        materi.id
+                        "/kelas_dibeli/" + _vm.kelasId + "/materi/" + materi.id
                     }
                   },
                   [
@@ -41500,6 +41599,149 @@ var staticRenderFns = [
     ])
   }
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/main/MainKelasDibeliDetailMateriComponent.vue?vue&type=template&id=fa91060a&":
+/*!********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/main/MainKelasDibeliDetailMateriComponent.vue?vue&type=template&id=fa91060a& ***!
+  \********************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("vue-headful", { attrs: { title: _vm.title } }),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-6" }, [
+            _c("h4", [_vm._v(_vm._s(_vm.kelas.nama))]),
+            _vm._v(" "),
+            _vm.materi != undefined
+              ? _c("h5", [_vm._v(_vm._s(_vm.materi.judul))])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.kuis != undefined ? _c("h5", [_vm._v("Sesi Kuis")]) : _vm._e(),
+            _vm._v(" "),
+            _c("hr"),
+            _vm._v(" "),
+            _vm.materi != undefined
+              ? _c("div", [_c("p", [_vm._v(_vm._s(_vm.materi.konten))])])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.kuis != undefined
+              ? _c("div", [
+                  _c("h6", [_vm._v("Pertanyaan")]),
+                  _vm._v(
+                    "\n          " +
+                      _vm._s(_vm.kuis.pertanyaan) +
+                      "\n          "
+                  ),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c(
+                    "form",
+                    {
+                      on: {
+                        submit: function($event) {
+                          $event.preventDefault()
+                          return _vm.jawab()
+                        }
+                      }
+                    },
+                    [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("h6", [_vm._v("Jawaban")]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.txJawabanVal,
+                              expression: "txJawabanVal"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            placeholder: "Input jawaban dari pertanyaan",
+                            required: ""
+                          },
+                          domProps: { value: _vm.txJawabanVal },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.txJawabanVal = $event.target.value
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary",
+                          attrs: { type: "submit" }
+                        },
+                        [_vm._v("Submit")]
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _vm.isAnswer
+                    ? _c("div", [
+                        _c("hr"),
+                        _vm._v(" "),
+                        _vm.correctAnswer
+                          ? _c("div", { staticClass: "alert alert-success" }, [
+                              _vm._v("Jawaban benar")
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        !_vm.correctAnswer
+                          ? _c("div", { staticClass: "alert alert-danger" }, [
+                              _vm._v("Jawaban salah")
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _c("br"),
+                        _vm._v(
+                          "\n            Kunci jawaban: " +
+                            _vm._s(_vm.kuis.jawaban) +
+                            "\n          "
+                        )
+                      ])
+                    : _vm._e()
+                ])
+              : _vm._e()
+          ])
+        ])
+      ])
+    ],
+    1
+  )
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -58112,9 +58354,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_main_MainKelasSayaMateriDetailComponent__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/main/MainKelasSayaMateriDetailComponent */ "./resources/js/components/main/MainKelasSayaMateriDetailComponent.vue");
 /* harmony import */ var _components_main_MainKelasDibeliComponent__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/main/MainKelasDibeliComponent */ "./resources/js/components/main/MainKelasDibeliComponent.vue");
 /* harmony import */ var _components_main_MainKelasDibeliDetailComponent__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/main/MainKelasDibeliDetailComponent */ "./resources/js/components/main/MainKelasDibeliDetailComponent.vue");
-/* harmony import */ var _components_main_MainCariKelasComponent__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/main/MainCariKelasComponent */ "./resources/js/components/main/MainCariKelasComponent.vue");
-/* harmony import */ var _components_main_MainKelasDetailComponent__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/main/MainKelasDetailComponent */ "./resources/js/components/main/MainKelasDetailComponent.vue");
-/* harmony import */ var _components_main_MainProfileComponent__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/main/MainProfileComponent */ "./resources/js/components/main/MainProfileComponent.vue");
+/* harmony import */ var _components_main_MainKelasDibeliDetailMateriComponent__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/main/MainKelasDibeliDetailMateriComponent */ "./resources/js/components/main/MainKelasDibeliDetailMateriComponent.vue");
+/* harmony import */ var _components_main_MainCariKelasComponent__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/main/MainCariKelasComponent */ "./resources/js/components/main/MainCariKelasComponent.vue");
+/* harmony import */ var _components_main_MainKelasDetailComponent__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/main/MainKelasDetailComponent */ "./resources/js/components/main/MainKelasDetailComponent.vue");
+/* harmony import */ var _components_main_MainProfileComponent__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/main/MainProfileComponent */ "./resources/js/components/main/MainProfileComponent.vue");
 
  // component
 // main
@@ -58123,6 +58366,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
  // main
+
 
 
 
@@ -58156,6 +58400,9 @@ var routes = [{
     path: '/kelas_dibeli/:id',
     component: _components_main_MainKelasDibeliDetailComponent__WEBPACK_IMPORTED_MODULE_12__["default"]
   }, {
+    path: '/kelas_dibeli/:kelas_id/materi/:materi_id',
+    component: _components_main_MainKelasDibeliDetailMateriComponent__WEBPACK_IMPORTED_MODULE_13__["default"]
+  }, {
     path: '/kelas_saya/:id/materi/add',
     component: _components_main_MainKelasSayaMateriTambahComponent__WEBPACK_IMPORTED_MODULE_9__["default"]
   }, {
@@ -58163,13 +58410,13 @@ var routes = [{
     component: _components_main_MainKelasSayaMateriDetailComponent__WEBPACK_IMPORTED_MODULE_10__["default"]
   }, {
     path: "/cari",
-    component: _components_main_MainCariKelasComponent__WEBPACK_IMPORTED_MODULE_13__["default"]
+    component: _components_main_MainCariKelasComponent__WEBPACK_IMPORTED_MODULE_14__["default"]
   }, {
     path: "/kelas/:id",
-    component: _components_main_MainKelasDetailComponent__WEBPACK_IMPORTED_MODULE_14__["default"]
+    component: _components_main_MainKelasDetailComponent__WEBPACK_IMPORTED_MODULE_15__["default"]
   }, {
     path: "/profile",
-    component: _components_main_MainProfileComponent__WEBPACK_IMPORTED_MODULE_15__["default"]
+    component: _components_main_MainProfileComponent__WEBPACK_IMPORTED_MODULE_16__["default"]
   }]
 }, {
   path: '/bergabung',
@@ -58838,6 +59085,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MainKelasDibeliDetailComponent_vue_vue_type_template_id_393c6517___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MainKelasDibeliDetailComponent_vue_vue_type_template_id_393c6517___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/main/MainKelasDibeliDetailMateriComponent.vue":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/main/MainKelasDibeliDetailMateriComponent.vue ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _MainKelasDibeliDetailMateriComponent_vue_vue_type_template_id_fa91060a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MainKelasDibeliDetailMateriComponent.vue?vue&type=template&id=fa91060a& */ "./resources/js/components/main/MainKelasDibeliDetailMateriComponent.vue?vue&type=template&id=fa91060a&");
+/* harmony import */ var _MainKelasDibeliDetailMateriComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MainKelasDibeliDetailMateriComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/main/MainKelasDibeliDetailMateriComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _MainKelasDibeliDetailMateriComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _MainKelasDibeliDetailMateriComponent_vue_vue_type_template_id_fa91060a___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _MainKelasDibeliDetailMateriComponent_vue_vue_type_template_id_fa91060a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/main/MainKelasDibeliDetailMateriComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/main/MainKelasDibeliDetailMateriComponent.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************!*\
+  !*** ./resources/js/components/main/MainKelasDibeliDetailMateriComponent.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MainKelasDibeliDetailMateriComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./MainKelasDibeliDetailMateriComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/main/MainKelasDibeliDetailMateriComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MainKelasDibeliDetailMateriComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/main/MainKelasDibeliDetailMateriComponent.vue?vue&type=template&id=fa91060a&":
+/*!**************************************************************************************************************!*\
+  !*** ./resources/js/components/main/MainKelasDibeliDetailMateriComponent.vue?vue&type=template&id=fa91060a& ***!
+  \**************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MainKelasDibeliDetailMateriComponent_vue_vue_type_template_id_fa91060a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./MainKelasDibeliDetailMateriComponent.vue?vue&type=template&id=fa91060a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/main/MainKelasDibeliDetailMateriComponent.vue?vue&type=template&id=fa91060a&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MainKelasDibeliDetailMateriComponent_vue_vue_type_template_id_fa91060a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MainKelasDibeliDetailMateriComponent_vue_vue_type_template_id_fa91060a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
