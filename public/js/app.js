@@ -1893,10 +1893,25 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _helper_Const__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../helper/Const */ "./resources/js/helper/Const.js");
+/* harmony import */ var vue_headful__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-headful */ "./node_modules/vue-headful/dist/vue-headful.js");
+/* harmony import */ var vue_headful__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_headful__WEBPACK_IMPORTED_MODULE_1__);
+//
+//
+//
+//
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    VueHeadful: vue_headful__WEBPACK_IMPORTED_MODULE_1___default.a
+  },
+  data: function data() {
+    return {
+      title: _helper_Const__WEBPACK_IMPORTED_MODULE_0__["default"].TITLE + "Admin Dashboard"
+    };
+  },
   mounted: function mounted() {
     if (localStorage.getItem(_helper_Const__WEBPACK_IMPORTED_MODULE_0__["default"].ADMIN_ID) == null) {
       this.$router.push("/admin/login");
@@ -1915,12 +1930,87 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _helper_Const__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../helper/Const */ "./resources/js/helper/Const.js");
+/* harmony import */ var vue_headful__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-headful */ "./node_modules/vue-headful/dist/vue-headful.js");
+/* harmony import */ var vue_headful__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_headful__WEBPACK_IMPORTED_MODULE_1__);
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    VueHeadful: vue_headful__WEBPACK_IMPORTED_MODULE_1___default.a
+  },
+  data: function data() {
+    return {
+      title: _helper_Const__WEBPACK_IMPORTED_MODULE_0__["default"].TITLE + "Login Admin",
+      loginIsFail: false,
+      // form login
+      txEmailVal: "",
+      txPasswordVal: "",
+      btnLoginIsDisabled: false
+    };
+  },
   mounted: function mounted() {
-    if (localStorage.getItem(Const.ADMIN_ID) != null) {
+    if (localStorage.getItem(_helper_Const__WEBPACK_IMPORTED_MODULE_0__["default"].ADMIN_ID) != null) {
       this.$router.push("/admin");
+    }
+  },
+  methods: {
+    login: function login() {
+      var _this = this;
+
+      this.loginIsFail = false;
+      this.btnLoginIsDisabled = true;
+      var body = {
+        email: this.txEmailVal,
+        password: this.txPasswordVal
+      };
+      axios.post(_helper_Const__WEBPACK_IMPORTED_MODULE_0__["default"].API_BASE_URL + "admin/login", body).then(function (res) {
+        if (res.data.data != null) {
+          localStorage.setItem(_helper_Const__WEBPACK_IMPORTED_MODULE_0__["default"].ADMIN_ID, res.data.data.id);
+
+          _this.$router.push("/admin");
+        } else {
+          _this.loginIsFail = true;
+          _this.btnLoginIsDisabled = false;
+        }
+      });
     }
   }
 });
@@ -2077,7 +2167,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       title: _helper_Const__WEBPACK_IMPORTED_MODULE_1__["default"].TITLE + "Bergabung",
       errorMessage: "",
-      // register element
+      // form register
       txNamaDepanRegisterVal: "",
       txNamaBelakangRegisterVal: "",
       txTelpRegisterVal: "",
@@ -2086,7 +2176,7 @@ __webpack_require__.r(__webpack_exports__);
       txPasswordReRegisterVal: "",
       btnDaftarRegisterIsDisabled: false,
       errorMessageRegisterIsHidden: true,
-      // login element
+      // form login
       txEmailLoginVal: "",
       txPasswordLoginVal: "",
       btnLoginIsDisabled: false,
@@ -40306,7 +40396,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c("div", [_c("vue-headful", { attrs: { title: _vm.title } })], 1)
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -40330,7 +40420,104 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c(
+    "div",
+    [
+      _c("vue-headful", { attrs: { title: _vm.title } }),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-6" }, [
+            _c(
+              "form",
+              {
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.login()
+                  }
+                }
+              },
+              [
+                _c("div", { staticClass: "form-group" }, [
+                  _vm._v("\n            Email\n            "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.txEmailVal,
+                        expression: "txEmailVal"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "email",
+                      placeholder: "example@mail.com",
+                      required: ""
+                    },
+                    domProps: { value: _vm.txEmailVal },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.txEmailVal = $event.target.value
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _vm._v("\n            Password\n            "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.txPasswordVal,
+                        expression: "txPasswordVal"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "password",
+                      placeholder: "Input password",
+                      required: ""
+                    },
+                    domProps: { value: _vm.txPasswordVal },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.txPasswordVal = $event.target.value
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+                  [_vm._v("Login")]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _vm.loginIsFail
+              ? _c("div", { staticClass: "alert alert-danger" }, [
+                  _vm._v("Login gagal, Email atau Password salah.")
+                ])
+              : _vm._e()
+          ])
+        ])
+      ])
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -58523,50 +58710,50 @@ var routes = [{
   path: '/',
   component: _components_main_MainComponent__WEBPACK_IMPORTED_MODULE_3__["default"],
   children: [{
-    path: '/',
+    path: '',
     component: _components_main_MainHomeComponent__WEBPACK_IMPORTED_MODULE_4__["default"]
   }, {
-    path: '/bergabung',
+    path: 'bergabung',
     component: _components_main_MainBergabungComponent__WEBPACK_IMPORTED_MODULE_5__["default"]
   }, {
-    path: '/kelas_saya',
+    path: 'kelas_saya',
     component: _components_main_MainKelasSayaComponent__WEBPACK_IMPORTED_MODULE_6__["default"]
   }, {
-    path: '/kelas_saya/:id',
+    path: 'kelas_saya/:id',
     component: _components_main_MainKelasSayaDetailComponent__WEBPACK_IMPORTED_MODULE_7__["default"]
   }, {
-    path: '/kelas_dibeli',
+    path: 'kelas_dibeli',
     component: _components_main_MainKelasDibeliComponent__WEBPACK_IMPORTED_MODULE_10__["default"]
   }, {
-    path: '/kelas_dibeli/:id',
+    path: 'kelas_dibeli/:id',
     component: _components_main_MainKelasDibeliDetailComponent__WEBPACK_IMPORTED_MODULE_11__["default"]
   }, {
-    path: '/kelas_dibeli/:kelas_id/materi/:materi_id',
+    path: 'kelas_dibeli/:kelas_id/materi/:materi_id',
     component: _components_main_MainKelasDibeliDetailMateriComponent__WEBPACK_IMPORTED_MODULE_12__["default"]
   }, {
-    path: '/kelas_saya/:id/materi/add',
+    path: 'kelas_saya/:id/materi/add',
     component: _components_main_MainKelasSayaMateriTambahComponent__WEBPACK_IMPORTED_MODULE_8__["default"]
   }, {
-    path: '/kelas_saya/:kelas_id/materi/:materi_id',
+    path: 'kelas_saya/:kelas_id/materi/:materi_id',
     component: _components_main_MainKelasSayaMateriDetailComponent__WEBPACK_IMPORTED_MODULE_9__["default"]
   }, {
-    path: "/cari",
+    path: "cari",
     component: _components_main_MainCariKelasComponent__WEBPACK_IMPORTED_MODULE_13__["default"]
   }, {
-    path: "/kelas/:id",
+    path: "kelas/:id",
     component: _components_main_MainKelasDetailComponent__WEBPACK_IMPORTED_MODULE_14__["default"]
   }, {
-    path: "/profile",
+    path: "profile",
     component: _components_main_MainProfileComponent__WEBPACK_IMPORTED_MODULE_15__["default"]
   }]
 }, {
   path: '/admin',
   component: _components_admin_AdminComponent__WEBPACK_IMPORTED_MODULE_16__["default"],
   children: [{
-    path: '/',
+    path: '',
     component: _components_admin_AdminDashboardComponent__WEBPACK_IMPORTED_MODULE_17__["default"]
   }, {
-    path: '/login',
+    path: 'login',
     component: _components_admin_AdminLoginComponent__WEBPACK_IMPORTED_MODULE_18__["default"]
   }]
 }];

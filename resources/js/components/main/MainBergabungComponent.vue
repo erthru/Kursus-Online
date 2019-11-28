@@ -138,7 +138,7 @@ export default {
       title: Const.TITLE + "Bergabung",
       errorMessage: "",
 
-      // register element
+      // form register
       txNamaDepanRegisterVal: "",
       txNamaBelakangRegisterVal: "",
       txTelpRegisterVal: "",
@@ -148,7 +148,7 @@ export default {
       btnDaftarRegisterIsDisabled: false,
       errorMessageRegisterIsHidden: true,
 
-      // login element
+      // form login
       txEmailLoginVal: "",
       txPasswordLoginVal: "",
       btnLoginIsDisabled: false,

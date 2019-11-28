@@ -34,51 +34,51 @@ const routes = [
         component: MainComponent,
         children: [
             {
-                path:'/',
+                path:'',
                 component: MainHomeComponent
             },
             {
-                path: '/bergabung',
+                path: 'bergabung',
                 component: MainBergabungComponent
             },
             {
-                path:'/kelas_saya',
+                path:'kelas_saya',
                 component: MainKelasSayaComponent
             },
             {
-                path:'/kelas_saya/:id',
+                path:'kelas_saya/:id',
                 component: MainKelasSayaDetailComponent
             },
             {
-                path:'/kelas_dibeli',
+                path:'kelas_dibeli',
                 component: MainKelasDibeliComponent
             },
             {
-                path:'/kelas_dibeli/:id',
+                path:'kelas_dibeli/:id',
                 component: MainKelasDibeliDetailComponent
             },
             {
-                path:'/kelas_dibeli/:kelas_id/materi/:materi_id',
+                path:'kelas_dibeli/:kelas_id/materi/:materi_id',
                 component: MainKelasDibeliDetailMateriComponent
             },
             {
-                path:'/kelas_saya/:id/materi/add',
+                path:'kelas_saya/:id/materi/add',
                 component: MainKelasSayaMateriTambahComponent
             },
             {
-                path:'/kelas_saya/:kelas_id/materi/:materi_id',
+                path:'kelas_saya/:kelas_id/materi/:materi_id',
                 component: MainKelasSayaMateriDetailComponent
             },
             {
-                path:"/cari",
+                path:"cari",
                 component: MainCariKelasComponent
             },
             {
-                path:"/kelas/:id",
+                path:"kelas/:id",
                 component: MainKelasDetailComponent
             },
             {
-                path:"/profile",
+                path:"profile",
                 component: MainProfileComponent
             }
         ]
@@ -88,11 +88,11 @@ const routes = [
         component: AdminComponent,
         children: [
             {
-                path: '/',
+                path: '',
                 component: AdminDashboardComponent
             },
             {
-                path: '/login',
+                path: 'login',
                 component: AdminLoginComponent
             }
         ]
