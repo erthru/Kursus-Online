@@ -17,6 +17,7 @@ import MainKelasSayaDetailComponent from './components/main/MainKelasSayaDetailC
 import MainKelasSayaMateriTambahComponent from './components/main/MainKelasSayaMateriTambahComponent';
 import MainKelasSayaMateriDetailComponent from './components/main/MainKelasSayaMateriDetailComponent';
 import MainKelasDibeliComponent from './components/main/MainKelasDibeliComponent';
+import MainKelasDibeliDetailComponent from './components/main/MainKelasDibeliDetailComponent';
 import MainCariKelasComponent from './components/main/MainCariKelasComponent';
 import MainKelasDetailComponent from './components/main/MainKelasDetailComponent';
 import MainProfileComponent from './components/main/MainProfileComponent';
@@ -44,6 +45,10 @@ const routes = [
             {
                 path:'/kelas_dibeli',
                 component: MainKelasDibeliComponent
+            },
+            {
+                path:'/kelas_dibeli/:id',
+                component: MainKelasDibeliDetailComponent
             },
             {
                 path:'/kelas_saya/:id/materi/add',
