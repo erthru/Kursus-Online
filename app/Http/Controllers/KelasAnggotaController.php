@@ -7,6 +7,18 @@ use Illuminate\Http\Request;
 
 class KelasAnggotaController extends Controller
 {
+    public function all()
+    {
+        $rsp = [
+            'data' => KelasAnggota::with(['pengguna', 'kelas'])
+            ->orderBy('id','DESC')
+            ->paginate(15)
+        ];
+
+        return $rsp;
+    }
+
+
     public function checkAnggota(Request $request)
     {
         $rsp = [

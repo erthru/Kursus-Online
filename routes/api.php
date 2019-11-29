@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 */
 
 // Kelas Anggota
+Route::get('/kelas_anggota','KelasAnggotaController@all');
 Route::get('/kelas_anggota/check/anggota','KelasAnggotaController@checkAnggota');
 Route::get('/kelas_anggota/anggota','KelasAnggotaController@anggotaKelas');
 Route::post('/kelas_anggota','KelasAnggotaController@store');
@@ -57,4 +58,5 @@ Route::post('/admin/login','AdminController@login');
 Route::put('/admin/{id}','AdminController@update');
 
 // Perusahaan
+Route::get('/perusahaan', 'PerusahaanController@all');
 Route::put('/perusahaan/saldo/add', 'PerusahaanController@addSaldo');

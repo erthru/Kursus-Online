@@ -1953,8 +1953,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _helper_Const__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../helper/Const */ "./resources/js/helper/Const.js");
-/* harmony import */ var vue_headful__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-headful */ "./node_modules/vue-headful/dist/vue-headful.js");
-/* harmony import */ var vue_headful__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_headful__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _helper_TextTools__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../helper/TextTools */ "./resources/js/helper/TextTools.js");
+/* harmony import */ var vue_headful__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-headful */ "./node_modules/vue-headful/dist/vue-headful.js");
+/* harmony import */ var vue_headful__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_headful__WEBPACK_IMPORTED_MODULE_2__);
 //
 //
 //
@@ -1965,20 +1966,63 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    VueHeadful: vue_headful__WEBPACK_IMPORTED_MODULE_1___default.a
+    VueHeadful: vue_headful__WEBPACK_IMPORTED_MODULE_2___default.a
   },
   data: function data() {
     return {
-      title: _helper_Const__WEBPACK_IMPORTED_MODULE_0__["default"].TITLE + "Admin Dashboard"
+      title: _helper_Const__WEBPACK_IMPORTED_MODULE_0__["default"].TITLE + "Admin Dashboard",
+      penggunaTerdaftar: 0,
+      kelasDibeli: 0,
+      pendapatan: 0
     };
   },
   mounted: function mounted() {
     if (localStorage.getItem(_helper_Const__WEBPACK_IMPORTED_MODULE_0__["default"].ADMIN_ID) == null) {
       this.$router.push("/admin/login");
+    }
+
+    this.loadData();
+  },
+  methods: {
+    loadData: function loadData() {
+      var _this = this;
+
+      axios.get(_helper_Const__WEBPACK_IMPORTED_MODULE_0__["default"].API_BASE_URL + "pengguna").then(function (res) {
+        _this.penggunaTerdaftar = res.data.data.total;
+      });
+      axios.get(_helper_Const__WEBPACK_IMPORTED_MODULE_0__["default"].API_BASE_URL + "kelas_anggota").then(function (res) {
+        _this.kelasDibeli = res.data.data.total;
+      });
+      axios.get(_helper_Const__WEBPACK_IMPORTED_MODULE_0__["default"].API_BASE_URL + "perusahaan").then(function (res) {
+        _this.pendapatan = res.data.data.saldo;
+      });
+    },
+    getRupiah: function getRupiah(x) {
+      return _helper_TextTools__WEBPACK_IMPORTED_MODULE_1__["default"].getRupiah(x);
     }
   }
 });
@@ -40544,8 +40588,8 @@ var render = function() {
         [
           _c(
             "router-link",
-            { staticClass: "navbar-brand", attrs: { to: "/admin" } },
-            [_vm._v("Kursus Online | Admin")]
+            { staticClass: "navbar-brand", attrs: { to: "/" } },
+            [_vm._v("Kursus Online")]
           ),
           _vm._v(" "),
           _vm._m(0),
@@ -40669,7 +40713,35 @@ var render = function() {
       _vm._v(" "),
       _c("br"),
       _vm._v(" "),
-      _c("div", { staticClass: "container" }, [_vm._v("\n    home\n  ")])
+      _c("div", { staticClass: "container" }, [
+        _c("h4", [_vm._v("Dasboard")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row mt-3" }, [
+          _c("div", { staticClass: "col-md-6" }, [
+            _c("div", { staticClass: "container bg-light p-3" }, [
+              _c("h5", [_vm._v("Pengguna Terdaftar")]),
+              _vm._v(" "),
+              _c("h2", [_vm._v(_vm._s(_vm.penggunaTerdaftar))])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-6" }, [
+            _c("div", { staticClass: "container bg-light p-3" }, [
+              _c("h5", [_vm._v("Kelas Di beli")]),
+              _vm._v(" "),
+              _c("h2", [_vm._v(_vm._s(_vm.kelasDibeli))])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
+        _c("div", { staticClass: "container bg-light p-3" }, [
+          _c("h5", [_vm._v("Pendapatan")]),
+          _vm._v(" "),
+          _c("h2", [_vm._v(_vm._s("Rp. " + _vm.getRupiah(_vm.pendapatan)))])
+        ])
+      ])
     ],
     1
   )

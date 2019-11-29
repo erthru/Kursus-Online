@@ -7,6 +7,15 @@ use Illuminate\Http\Request;
 
 class PerusahaanController extends Controller
 {
+    public function all()
+    {
+        $rsp = [
+            'data' => Perusahaan::first()
+        ];
+
+        return $rsp;
+    }
+
     public function addSaldo(Request $request){
         $perusahaan = Perusahaan::first();
 

@@ -1,7 +1,7 @@
 <template>
   <div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-      <router-link class="navbar-brand" to="/admin">Kursus Online | Admin</router-link>
+      <router-link class="navbar-brand" to="/">Kursus Online</router-link>
       <button
         class="navbar-toggler"
         type="button"
