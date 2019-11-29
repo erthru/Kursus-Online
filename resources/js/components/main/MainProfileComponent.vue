@@ -1,6 +1,6 @@
 <template>
   <div>
-    <vue-headful :title="title" /> 
+    <vue-headful :title="title" />
     <br />
     <div class="container">
       <div class="row">
@@ -8,7 +8,13 @@
           <form v-on:submit.prevent="editProfile()">
             <div class="form-group">
               Nama Depan
-              <input type="text" class="form-control" placeholder="Suprianto" v-model="txNamaDepanVal" required />
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Suprianto"
+                v-model="txNamaDepanVal"
+                required
+              />
             </div>
             <div class="form-group">
               Nama Belakang
@@ -22,15 +28,35 @@
             </div>
             <div class="form-group">
               Telp
-              <input type="text" class="form-control" v-model="txTelpVal" placeholder="0812xxxx" disabled required />
+              <input
+                type="text"
+                class="form-control"
+                v-model="txTelpVal"
+                placeholder="0812xxxx"
+                disabled
+                required
+              />
             </div>
             <div class="form-group">
               Email
-              <input type="email" class="form-control" v-model="txEmailVal" placeholder="someone@mail.com" disabled required />
+              <input
+                type="email"
+                class="form-control"
+                v-model="txEmailVal"
+                placeholder="someone@mail.com"
+                disabled
+                required
+              />
             </div>
             <div class="form-group">
               Password
-              <input type="password" class="form-control" placeholder="Input Password" v-model="txPasswordVal" required />
+              <input
+                type="password"
+                class="form-control"
+                placeholder="Input Password"
+                v-model="txPasswordVal"
+                required
+              />
             </div>
             <button
               class="btn btn-primary"
@@ -120,19 +146,24 @@
       id="topupModalStatus"
       tabindex="-1"
       role="dialog"
+      data-backdrop="static"
+      data-keyboard="false"
       aria-labelledby="exampleModalLabel"
     >
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Informasi</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
           </div>
           <div class="modal-body">{{ topupModalStatusInformation }}</div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal" v-on:click="reloadPage()">Tutup</button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+              v-if="topupModalStatusInformation != 'Memproses ...'"
+              v-on:click="reloadPage()"
+            >Tutup</button>
           </div>
         </div>
       </div>
@@ -145,7 +176,7 @@ import Const from "../../helper/Const";
 import TextTools from "../../helper/TextTools";
 import VueHeadful from "vue-headful";
 export default {
-  components:{
+  components: {
     VueHeadful
   },
   data() {
@@ -163,7 +194,7 @@ export default {
       txEmailVal: "",
       txPasswordVal: "",
       btnPerbaruiIsDisabled: false,
-      
+
       // form topup modal
       selectedMetodePembayaran: "",
       txJumlahTopupVal: "",
@@ -251,8 +282,8 @@ export default {
           });
       }
     },
-    reloadPage(){
-        this.$router.go(0);
+    reloadPage() {
+      this.$router.go(0);
     }
   }
 };

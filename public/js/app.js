@@ -2737,9 +2737,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
 
 
 
@@ -4013,6 +4010,37 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _helper_TextTools__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../helper/TextTools */ "./resources/js/helper/TextTools.js");
 /* harmony import */ var vue_headful__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-headful */ "./node_modules/vue-headful/dist/vue-headful.js");
 /* harmony import */ var vue_headful__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_headful__WEBPACK_IMPORTED_MODULE_2__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -41887,19 +41915,6 @@ var staticRenderFns = [
         "h5",
         { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
         [_vm._v("Informasi")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          attrs: {
-            type: "button",
-            "data-dismiss": "modal",
-            "aria-label": "Close"
-          }
-        },
-        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
       )
     ])
   }
@@ -43794,6 +43809,8 @@ var render = function() {
             id: "topupModalStatus",
             tabindex: "-1",
             role: "dialog",
+            "data-backdrop": "static",
+            "data-keyboard": "false",
             "aria-labelledby": "exampleModalLabel"
           }
         },
@@ -43810,19 +43827,21 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "modal-footer" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-secondary",
-                      attrs: { type: "button", "data-dismiss": "modal" },
-                      on: {
-                        click: function($event) {
-                          return _vm.reloadPage()
-                        }
-                      }
-                    },
-                    [_vm._v("Tutup")]
-                  )
+                  _vm.topupModalStatusInformation != "Memproses ..."
+                    ? _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-secondary",
+                          attrs: { type: "button", "data-dismiss": "modal" },
+                          on: {
+                            click: function($event) {
+                              return _vm.reloadPage()
+                            }
+                          }
+                        },
+                        [_vm._v("Tutup")]
+                      )
+                    : _vm._e()
                 ])
               ])
             ]
@@ -43868,19 +43887,6 @@ var staticRenderFns = [
         "h5",
         { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
         [_vm._v("Informasi")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          attrs: {
-            type: "button",
-            "data-dismiss": "modal",
-            "aria-label": "Close"
-          }
-        },
-        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
       )
     ])
   }
