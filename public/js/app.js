@@ -2737,6 +2737,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
@@ -41801,6 +41804,8 @@ var render = function() {
             id: "beliInformationModal",
             tabindex: "-1",
             role: "dialog",
+            "data-backdrop": "static",
+            "data-keyboard": "false",
             "aria-labelledby": "exampleModalLabel"
           }
         },
@@ -41822,19 +41827,21 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "modal-footer" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-secondary",
-                      attrs: { type: "button", "data-dismiss": "modal" },
-                      on: {
-                        click: function($event) {
-                          return _vm.reloadPage()
-                        }
-                      }
-                    },
-                    [_vm._v("Tutup")]
-                  )
+                  _vm.keteranganPembelian != "Memproses..."
+                    ? _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-secondary",
+                          attrs: { type: "button", "data-dismiss": "modal" },
+                          on: {
+                            click: function($event) {
+                              return _vm.reloadPage()
+                            }
+                          }
+                        },
+                        [_vm._v("Tutup")]
+                      )
+                    : _vm._e()
                 ])
               ])
             ]

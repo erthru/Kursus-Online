@@ -83,6 +83,8 @@
       id="beliInformationModal"
       tabindex="-1"
       role="dialog"
+      data-backdrop="static"
+      data-keyboard="false"
       aria-labelledby="exampleModalLabel"
     >
       <div class="modal-dialog" role="document">
@@ -103,6 +105,7 @@
               class="btn btn-secondary"
               data-dismiss="modal"
               v-on:click="reloadPage()"
+              v-if="keteranganPembelian != 'Memproses...'"
             >Tutup</button>
           </div>
         </div>
