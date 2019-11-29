@@ -32,7 +32,7 @@
             <div class="form-group">
               <label>
                 Tentukan Harga
-                <br>
+                <br />
                 * Terdapat potongan biaya administrasi sebesar {{biayaAdmin}}% dari harga jual kelas (Jika Berbayar)
               </label>
               <input
@@ -54,6 +54,7 @@
         <!--form daftar kelas -->
         <div class="col-md-6">
           <h4>Daftar Kelas Saya</h4>
+          <div class="alert alert-secondary">{{kelasTerjual}} Kelas Terjual</div>
           <div v-for="item in kelas" :key="item.id">
             <router-link class="text-primary" :to="'/kelas_saya/'+item.id">{{item.nama}}</router-link>
           </div>
@@ -90,6 +91,7 @@ export default {
       this.$router.push("/");
     }
     this.loadKelas("next");
+    this.loadKelasTerjual();
   },
   data() {
     return {
@@ -102,6 +104,7 @@ export default {
       successMsg: "",
       successMsgIsHidden: true,
       biayaAdmin: Const.BIAYA_ADMIN,
+      kelasTerjual: 0,
 
       // buat kelas element
       txNamaKelasVal: "",
@@ -132,6 +135,17 @@ export default {
         this.page = 0;
         this.loadKelas("next");
       });
+    },
+    loadKelasTerjual() {
+      axios
+        .get(
+          Const.API_BASE_URL +
+            "kelas_anggota/check/pengguna/kelas_terjual?pengguna_id=" +
+            localStorage.getItem(Const.PENGGUNA_ID)
+        )
+        .then(res => {
+          this.kelasTerjual = res.data.data.total;
+        });
     },
     loadKelas(mode) {
       if (mode == "next") {

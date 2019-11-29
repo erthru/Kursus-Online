@@ -3355,6 +3355,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3367,6 +3368,7 @@ __webpack_require__.r(__webpack_exports__);
     }
 
     this.loadKelas("next");
+    this.loadKelasTerjual();
   },
   data: function data() {
     return {
@@ -3379,6 +3381,7 @@ __webpack_require__.r(__webpack_exports__);
       successMsg: "",
       successMsgIsHidden: true,
       biayaAdmin: _helper_Const__WEBPACK_IMPORTED_MODULE_0__["default"].BIAYA_ADMIN,
+      kelasTerjual: 0,
       // buat kelas element
       txNamaKelasVal: "",
       txDeskripsiVal: "",
@@ -3410,8 +3413,15 @@ __webpack_require__.r(__webpack_exports__);
         _this.loadKelas("next");
       });
     },
-    loadKelas: function loadKelas(mode) {
+    loadKelasTerjual: function loadKelasTerjual() {
       var _this2 = this;
+
+      axios.get(_helper_Const__WEBPACK_IMPORTED_MODULE_0__["default"].API_BASE_URL + "kelas_anggota/check/pengguna/kelas_terjual?pengguna_id=" + localStorage.getItem(_helper_Const__WEBPACK_IMPORTED_MODULE_0__["default"].PENGGUNA_ID)).then(function (res) {
+        _this2.kelasTerjual = res.data.data.total;
+      });
+    },
+    loadKelas: function loadKelas(mode) {
+      var _this3 = this;
 
       if (mode == "next") {
         this.page += 1;
@@ -3422,10 +3432,10 @@ __webpack_require__.r(__webpack_exports__);
       axios.get(_helper_Const__WEBPACK_IMPORTED_MODULE_0__["default"].API_BASE_URL + "pengguna/" + localStorage.getItem(_helper_Const__WEBPACK_IMPORTED_MODULE_0__["default"].PENGGUNA_ID) + "?page=" + this.page).then(function (res) {
         var hasManyCountKelas = parseInt(res.data.has_many_count.kelas);
         var limit = 15;
-        _this2.totalPage = Math.ceil(hasManyCountKelas / limit);
-        _this2.kelas = res.data.data.kelas;
+        _this3.totalPage = Math.ceil(hasManyCountKelas / limit);
+        _this3.kelas = res.data.data.kelas;
 
-        _this2.setupPagination();
+        _this3.setupPagination();
       });
     },
     setupPagination: function setupPagination() {
@@ -42573,6 +42583,10 @@ var render = function() {
             { staticClass: "col-md-6" },
             [
               _c("h4", [_vm._v("Daftar Kelas Saya")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "alert alert-secondary" }, [
+                _vm._v(_vm._s(_vm.kelasTerjual) + " Kelas Terjual")
+              ]),
               _vm._v(" "),
               _vm._l(_vm.kelas, function(item) {
                 return _c(

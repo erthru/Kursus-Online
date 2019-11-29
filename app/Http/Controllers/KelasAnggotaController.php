@@ -11,8 +11,8 @@ class KelasAnggotaController extends Controller
     {
         $rsp = [
             'data' => KelasAnggota::with(['pengguna', 'kelas'])
-            ->orderBy('id','DESC')
-            ->paginate(15)
+                ->orderBy('id', 'DESC')
+                ->paginate(15)
         ];
 
         return $rsp;
@@ -31,13 +31,25 @@ class KelasAnggotaController extends Controller
         return $rsp;
     }
 
+    public function checkKelasTerjualPengguna(Request $request)
+    {
+        $rsp = [
+            'data' => KelasAnggota::with(['pengguna', 'kelas'])
+            ->whereHas('kelas', function ($kelas) use ($request) {
+                $kelas->where('pengguna_id', $request->query('pengguna_id'));
+            })->paginate(15)
+        ];
+
+        return $rsp;
+    }
+
     public function anggotaKelas(Request $request)
     {
         $rsp = [
-            'data' => KelasAnggota::with(['pengguna','kelas'])
-            ->where('pengguna_id', $request->query('pengguna_id'))
-            ->orderBy('id','DESC')
-            ->paginate(15)
+            'data' => KelasAnggota::with(['pengguna', 'kelas'])
+                ->where('pengguna_id', $request->query('pengguna_id'))
+                ->orderBy('id', 'DESC')
+                ->paginate(15)
         ];
 
         return $rsp;
