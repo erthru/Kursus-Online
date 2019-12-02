@@ -58,14 +58,21 @@
             </button>
           </div>
           <div class="modal-body">
-            <h5>Anda yakin untuk membeli kelas ini ?</h5>
-            <br />Saldo anda saat ini:
-            <div class="text-danger">
-              <strong>Rp. {{ penggunaSaldo }}</strong>
+            <div v-if="isLoggedIn">
+              <h5>Anda yakin untuk membeli kelas ini ?</h5>
+              <br />Saldo anda saat ini:
+              <div class="text-danger">
+                <strong>Rp. {{ penggunaSaldo }}</strong>
+              </div>
+              <br />(saldo akan langsung terpotong saat anda menekan tombol beli)
             </div>
-            <br />(saldo akan langsung terpotong saat anda menekan tombol beli)
+            <div v-if="!isLoggedIn">
+              Bergabung untuk bisa beli kelas.
+              <br />
+              <a href="#" v-on:click="bergabung()">Bergabung</a>
+            </div>
           </div>
-          <div class="modal-footer">
+          <div class="modal-footer" v-if="isLoggedIn">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
             <button
               type="button"
@@ -133,11 +140,15 @@ export default {
       penggunaSaldo: "0",
       penggunaId: "",
       alreadyBuy: false,
-      keteranganPembelian: ""
+      keteranganPembelian: "",
+      isLoggedIn: false
     };
   },
   mounted() {
     this.penggunaId = localStorage.getItem(Const.PENGGUNA_ID);
+
+    this.isLoggedIn =
+      localStorage.getItem(Const.PENGGUNA_ID) == null ? false : true;
 
     this.loadKelasDetail();
     this.loadKelasMateri();
@@ -239,13 +250,16 @@ export default {
         await axios.post(Const.API_BASE_URL + "kelas_anggota", body2);
 
         const saldoToPenjualKotor = parseInt(TextTools.cleanRupiah(this.harga));
-        const saldoToAdmin = Const.BIAYA_ADMIN / 100 * saldoToPenjualKotor;
+        const saldoToAdmin = (Const.BIAYA_ADMIN / 100) * saldoToPenjualKotor;
         const saldoToPenjualBersih = saldoToPenjualKotor - saldoToAdmin;
 
         const body3 = {
           saldo: saldoToPenjualBersih
         };
-        await axios.put(Const.API_BASE_URL + "pengguna/" + this.owner.id + "/saldo/add", body3);
+        await axios.put(
+          Const.API_BASE_URL + "pengguna/" + this.owner.id + "/saldo/add",
+          body3
+        );
 
         const body4 = {
           saldo: saldoToAdmin
@@ -260,6 +274,10 @@ export default {
     },
     reloadPage() {
       this.$router.go(0);
+    },
+    bergabung(){
+      $("#beliConfirmationModal").modal("toggle");
+      this.$router.push("/bergabung");
     }
   }
 };
